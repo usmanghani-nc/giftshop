@@ -1,0 +1,12 @@
+{
+  "name": "gitshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/usmanghanidev/giftshop.git",
+  "author": "usmanGhani16 <afro123737@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "push": "git add . && git commit -m",
+    "postpush": "git push --all"
+  }
+}
