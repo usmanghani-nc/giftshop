@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Giftshop</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+    <!-- font awsome -->
+    <script src="./js/all.js"></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <section id="header" class="bg-light">
+        <div class="container-fluid d-flex">
+            <div class="row logo">
+                <div class="col-md-8">
+                    <img src="img/logo.png" alt="Giftshop" class="img-fluid img">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of header -->
+    <!-- forms start -->
+
+    <section id="SignUpForm" class="py-5">
+        <div class="container" id="form-main">
+            <div class="row py-5">
+                <div class="col-md-6 mx-auto text-center">
+                    <i class="fas fa-user-tie fa-5x"></i>
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col-md-8  mx-auto col-md-offset-3">
+                    <div class="panel panel-login">
+                        <div class="panel-heading">
+                            <div class="row py-2 ">
+                                <div class="col-xs-6 mx-auto">
+                                    <a href="#" class="active" id="login-form-link">Login</a>
+                                </div>
+                                <div class="col-xs-6 mx-auto">
+                                    <a href="#" id="register-form-link">Register</a>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <form id="login-form" action="home.html" style="display: block;"
+                                        onsubmit="return login()">
+                                        <div class="form-group">
+                                            <input type="text" name="username" id="username" class="form-control"
+                                                placeholder="Username" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="pws" class="form-control"
+                                                placeholder="Password">
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <input type="checkbox" class="" name="remember" id="remember">
+                                            <label for="remember"> Remember Me</label>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 mx-auto col-sm-offset-3">
+                                                    <button type="button" class="form-control btn btn-login"
+                                                        onclick="return login()">Log in</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="text-center">
+                                                        <a href="#" class="forgot-password">Forgot Password?</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form action="index.html" id="register-form" style="display: none;"
+                                        onsubmit="return signup()">
+                                        <div class="form-group">
+                                            <input type="text" name="FName" id="fName" class="form-control"
+                                                placeholder="First Name" value="">
+                                            <p id="f_name_error"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="LName" id="LName" class="form-control"
+                                                placeholder="Last Name" value="">
+                                            <p id="l_name_error"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="username" id="UserName" class="form-control"
+                                                placeholder="Username" value="">
+                                        </div>
+                                        <p id="user_name_error"></p>
+                                        <div class="form-group">
+                                            <input type="email" name="email" id="email" class="form-control"
+                                                placeholder="Email Address" value="">
+                                            <p id="email_error"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" name="password" id="password" class="form-control"
+                                                placeholder="Password">
+                                            <p id="pws_error"></p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" name="confirm_password" id="confirmPassword"
+                                                class="form-control" placeholder="Confirm Password">
+                                            <p id="Repws_error"></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-sm-3 mx-auto">
+                                                    <button type="button" class="form-control btn btn-register"
+                                                        onclick="return signup()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- form end -->
+
+
+    <!-- Footer -->
+    <footer class=" page-footer font-small stylish-color-dark pt-4 ">
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left ">
+            <div class="row ">
+                <div class="col-md-4 mx-auto ">
+
+                    <!-- Content -->
+                    <h5 class="font-weight-bold footer-fonty text-uppercase mt-3 mb-4 ">Blue Ribbon</h5>
+                    <p class=" ">Here you can use rows and columns here to organize your footer content. Lorem ipsum
+                        dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+                <hr class="clearfix w-100 d-md-none ">
+                <div class="col-md-2 mx-auto ">
+
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4 ">About us</h5>
+                    <ul class="list-unstyled ">
+                        <li>
+                            <a href="# "></a>
+                        </li>
+                        <li class="d-flex ">
+                            <a href="# "><i class="fas fa-phone-square fa-2x "></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <hr class="clearfix w-100 d-md-none ">
+
+
+                <div class="col-md-2 mx-auto ">
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4 ">Contact us</h5>
+                    <ul class="list-unstyled ">
+                        <li class="d-flex ">
+                            <a href="# "><i class="fas fa-file-contract fa-2x "></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <hr class="clearfix w-100 d-md-none ">
+
+
+                <div class="col-md-2 mx-auto ">
+                    <h5 class="font-weight-bold text-uppercase mt-3 mb-4 ">Locat us</h5>
+                    <ul class="list-unstyled ">
+                        <li class="d-flex ">
+                            <a href="# "><i class="fas fa-location-arrow fa-2x "></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+
+
+        <!-- Social buttons -->
+        <ul class="list-unstyled list-inline text-center " id="list ">
+            <li class="list-inline-item ">
+                <a class="btn-floating btn-fb mx-1 text-primary " href="https://www.facebook.com/usman.ghani.jaffri ">
+                    <i class="fab fa-facebook-f "> </i>
+                </a>
+            </li>
+            <li class="list-inline-item ">
+                <a class="btn-floating btn-tw mx-1 text-primary " href="https://twitter.com/16_jafri ">
+                    <i class="fab fa-twitter "> </i>
+                </a>
+            </li>
+            <li class="list-inline-item ">
+                <a class="btn-floating btn-gplus mx-1 text-danger " href="google.com ">
+                    <i class="fab fa-google-plus-g "> </i>
+                </a>
+            </li>
+            <li class="list-inline-item ">
+                <a class="btn-floating btn-li mx-1 text-danger " href="# ">
+                    <i class="fab fa-linkedin-in "> </i>
+                </a>
+            </li>
+            <li class="list-inline-item ">
+                <a class="btn-floating btn-dribbble mx-1 " href="# ">
+                    <i class="fab fa-dribbble "> </i>
+                </a>
+            </li>
+        </ul>
+        <!-- Social buttons -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3 " id="list ">© 2019 Copyright:
+            <a href="home.html "> blueribbon.com</a>
+        </div>
+        <!-- Copyright -->
+        </div>
+    </footer>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./js/jquery-3.3.1.min.js "></script>
+    <script src="./js/bootstrap.bundle.min.js "></script>
+    <!-- personal js file -->
+    <script src="./js/main.js "></script>
+</body>
+
+</html>
