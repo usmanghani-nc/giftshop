@@ -9,7 +9,7 @@ export default function Button({ children, action, color, loading }) {
   );
 }
 
-Button.PropTypes = {
+Button.propTypes = {
   action: PropTypes.func,
   color: PropTypes.string,
   loading: PropTypes.bool,
