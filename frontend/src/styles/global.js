@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
         background: ${({ theme }) => theme.body};
         color: ${({ theme }) => theme.text};
         font-family: 'Roboto', sans-serif;
-        transition: all 0.50s linear;
+        transition: all 0.3s;
         font-size: 62.5%;
         box-sizing: border-box;
         scroll-behavior: smooth;
