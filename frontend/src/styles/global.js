@@ -51,9 +51,44 @@ const GlobalStyle = createGlobalStyle`
           color: ${({ theme }) => theme.black};
         }
 
-        p,a,section,div,span,li,ul,ol,footer,header,nav,main {
-          font-size: ${({ theme }) => theme.sizes.text};
+        p,section,div,span,li,ul,ol,footer,header,nav,main,button,input,textarea,label{
           color: ${({ theme }) => theme.text};
+          font-size:${({ theme }) => theme.sizes.text} ;
+          font-weight: 500;
+          font-style: normal;
+          font-family: inherit;
+          padding: 0;
+          margin: 0;  
+          line-height: 1.2;
+        }
+
+        ol, ul {
+          list-style: none;
+        }
+
+        img {
+          height: auto;
+          max-width: 100%;
+        }
+
+        a {
+            text-decoration: none;
+            color:${({ theme }) => theme.black};
+            font-weight: 500;
+            transition: all .3s;
+            display: inline-block;
+            cursor: pointer;
+
+            &:hover {
+              color:${({ theme }) => theme.primary};
+            }
+        }
+
+        .container {
+          max-width: 1180px;
+          margin: 0 auto;
+          padding: 0 2rem;
+          height: 100%;
         }
 
         @media (max-width:${({ theme }) => theme.responsive.lg} ) {

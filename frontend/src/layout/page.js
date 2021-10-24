@@ -1,10 +1,19 @@
 import Head from 'next/head';
 import Header from 'layout/header';
-import Footer from 'layout/Footer';
+import Footer from 'layout/footer';
+import styled from 'styled-components';
 
-export default function Page({ children }) {
+const PageStyles = styled.div`
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: min-content 1fr min-content;
+`;
+
+const MainStyles = styled.main``;
+
+export default function Page({ children, noHeader, nofooter }) {
   return (
-    <>
+    <PageStyles>
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,13 +22,17 @@ export default function Page({ children }) {
           rel="stylesheet"
         />
         <title>Gift Shop</title>
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
       </Head>
+      {!noHeader && <Header />}
 
-      <Header />
+      <MainStyles>{children}</MainStyles>
 
-      <main>{children}</main>
-
-      <Footer />
-    </>
+      {!nofooter && <Footer />}
+    </PageStyles>
   );
 }
