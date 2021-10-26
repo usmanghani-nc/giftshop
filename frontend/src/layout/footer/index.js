@@ -1,46 +1,37 @@
-import { FooterStyles } from './styles';
+import { FooterStyles, Grid, Copyright } from './styles';
+import Link from 'components/link';
 
 export default function footer() {
   return (
     <FooterStyles>
       <div className="container">
-        <div>
-          <h5>Blue Ribbon</h5>
-          <p>
-            Here you can use rows and columns here to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
-          </p>
-        </div>
+        <Grid>
+          <div className="gird-item">
+            <h2 className="heading">Gift Shop</h2>
+            <p>
+              I did this project for my programming skills to improve and learn new tech on the way
+              do best practices that other dev uses day by day. Stack use in this project (NEXT.JS,
+              NODE.JS, MONGODB) for stlyes i use stlyed-component state management react context API
+            </p>
+          </div>
 
-        <div>
-          <h5 className="font-weight-bold text-uppercase mt-3 mb-4 text-dark">Contact</h5>
-          <ul>
-            <li>
-              <p>+92 308343435</p>
-              <p>Mon - Fri, 8:00-22:00</p>
-              <p>info@gmail.com</p>
-              <p>sale@gmail.com</p>
-            </li>
-          </ul>
-        </div>
-
-        <div className="  ">
-          <h5>Locat us</h5>
-          <ul className="list-unstyled ">
-            <li className="list-item">
-              <p>Karachi, Nazimabad no1 </p>
-              <p>Pakistan</p>
-              <p>Mon - Fri, 8:00-22:00</p>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          © 2019 Copyright:
-          <a href="home.html">blueribbon.com</a>
-        </div>
-        <div>Copyright</div>
+          <div className="gird-item">
+            <h2 className="heading-sm">Contact me</h2>
+            <ul>
+              <li>
+                <p>usmanghanidev@gmail.com</p>
+                <p>+92 3082875363</p>
+              </li>
+            </ul>
+          </div>
+        </Grid>
       </div>
+      <Copyright>
+        <span className="yaer">© {new Date().getFullYear()} Copyright:</span>
+        <Link className="link" href="https://github.com/usmanghanidev">
+          Muhammad Usman Ghani
+        </Link>
+      </Copyright>
     </FooterStyles>
   );
 }

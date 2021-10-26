@@ -2,10 +2,10 @@ import { StyledLink } from './styles';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 
-export default function LinkCom({ children, href, p, m, size }) {
+export default function LinkCom({ children, href, p, m, size, className }) {
   return (
     <Link href={href ? href : `/`} passHref>
-      <StyledLink p={p} m={m} size={size}>
+      <StyledLink p={p} m={m} size={size} className={className}>
         {children}
       </StyledLink>
     </Link>

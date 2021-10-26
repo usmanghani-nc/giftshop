@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
           font-family: inherit;
           padding: 0;
           margin: 0;  
-          line-height: 1.2;
+          line-height: 1.4;
         }
 
         ol, ul {
@@ -88,7 +88,6 @@ const GlobalStyle = createGlobalStyle`
           max-width: 1180px;
           margin: 0 auto;
           padding: 0 2rem;
-          height: 100%;
         }
 
         @media (max-width:${({ theme }) => theme.responsive.lg} ) {

@@ -6,7 +6,8 @@ import styled from 'styled-components';
 const PageStyles = styled.div`
   display: grid;
   min-height: 100vh;
-  grid-template-rows: min-content 1fr min-content;
+
+  grid-template-rows: min-content 2fr min-content;
 `;
 
 const MainStyles = styled.main``;

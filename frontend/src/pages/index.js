@@ -12,6 +12,38 @@ export default function Home({}) {
         <h1>hello im heading</h1>
         <h1>hello im heading</h1>
       </Section>
+      <Section>
+        <p> aiofbaofnaof[oi] dandiandan</p>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+      </Section>{' '}
+      <Section>
+        <p> aiofbaofnaof[oi] dandiandan</p>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+      </Section>{' '}
+      <Section>
+        <p> aiofbaofnaof[oi] dandiandan</p>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+      </Section>{' '}
+      <Section>
+        <p> aiofbaofnaof[oi] dandiandan</p>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+        <h1>hello im heading</h1>
+      </Section>
     </Page>
   );
 }
