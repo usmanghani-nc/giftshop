@@ -1,10 +1,11 @@
 import { HeaderStyles, Logo, GridBox, LogoIMG, Ul, Nav, UserDiv } from './styles';
+import { FiUser, FiSearch } from 'react-icons/fi';
 
 import Link from 'components/link';
 export default function Header() {
   return (
     <HeaderStyles>
-      <div className="container">
+      <div className="header-container">
         <GridBox>
           <Logo>
             <LogoIMG src="img/logo.png" alt="Giftshop" className="" alt="Giftshop" />
@@ -36,6 +37,8 @@ export default function Header() {
           </Nav>
 
           <UserDiv>
+            <FiUser />
+            <FiSearch />
             <Link href="/login" m={'0 1.2rem 0 0'}>
               Login
             </Link>

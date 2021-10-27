@@ -4,7 +4,7 @@ import Link from 'components/link';
 export default function footer() {
   return (
     <FooterStyles>
-      <div className="container">
+      <div className="footer-container">
         <Grid>
           <div className="gird-item">
             <h2 className="heading">Gift Shop</h2>

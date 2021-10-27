@@ -3,10 +3,17 @@ import styled from 'styled-components';
 export const FooterStyles = styled.footer`
   background-color: #404864;
   padding: 3rem 0.5rem 2rem;
+
   div,
   p,
   h5 {
     color: white;
+  }
+
+  .footer-container {
+    max-width: 1080px;
+    padding: 0 1rem;
+    margin: 0 auto;
   }
 `;
 

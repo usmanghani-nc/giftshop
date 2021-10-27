@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "push" : "cd.. && yarn push -m"
   },
   "dependencies": {
     "axios": "^0.23.0",
@@ -15,6 +16,7 @@
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {

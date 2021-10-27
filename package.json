@@ -7,6 +7,8 @@
   "license": "MIT",
   "scripts": {
     "push": "git add . && git commit -m",
-    "postpush": "git push --all"
+    "postpush": "git push --all",
+    "dev" : "cd frontend/ && yarn dev",
+    "start" : "cd backend/ && yarn start"
   }
 }

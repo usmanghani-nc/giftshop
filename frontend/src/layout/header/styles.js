@@ -4,6 +4,12 @@ export const HeaderStyles = styled.header`
   background-color: ${({ theme }) => theme.bg};
   padding: 1rem 0.5rem;
   border-bottom: 1px solid ${({ theme }) => theme.border};
+
+  .header-container {
+    max-width: 1080px;
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
 `;
 
 export const GridBox = styled.div`

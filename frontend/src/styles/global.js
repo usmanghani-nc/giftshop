@@ -85,9 +85,9 @@ const GlobalStyle = createGlobalStyle`
         }
 
         .container {
-          max-width: 1180px;
-          margin: 0 auto;
+          max-width: 1080px;
           padding: 0 2rem;
+          flex: 1 1 calc(100vh - 121px);
         }
 
         @media (max-width:${({ theme }) => theme.responsive.lg} ) {
