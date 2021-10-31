@@ -1,5 +1,6 @@
-import { HeaderStyles, Logo, GridBox, LogoIMG, Ul, Nav, UserDiv } from './styles';
+import { HeaderStyles, Logo, GridBox, LogoIMG, Ul, Nav, UserDiv, Item } from './styles';
 import { FiUser, FiSearch } from 'react-icons/fi';
+import Button from 'components/button';
 
 import Link from 'components/link';
 export default function Header() {
@@ -13,36 +14,37 @@ export default function Header() {
 
           <Nav>
             <Ul>
-              <li>
-                <Link href="/login" m={'0 1.2rem 0 0'}>
+              <Item>
+                <Link href="/login" m={'0 3rem 0 0'}>
                   Home
                 </Link>
-              </li>
-              <li>
-                <Link href="/login" m={'0 1.2rem 0 0'}>
-                  Birthdays Gifts
-                </Link>
-              </li>
-              <li>
-                <Link href="/login" m={'0 1.2rem 0 0'}>
+              </Item>
+              <Item>
+                <Link href="/login" m={'0 3rem 0 0'}>
                   Eid Gifts
                 </Link>
-              </li>
-              <li>
-                <Link href="/login" m={'0 1.2rem 0 0'}>
+              </Item>
+              <Item>
+                <Link href="/login" m={'0 3rem 0 0'}>
+                  Birthdays Gifts
+                </Link>
+              </Item>
+              <Item>
+                <Link href="/login" m={'0'}>
                   Wedding Gifts
                 </Link>
-              </li>
+              </Item>
             </Ul>
           </Nav>
 
           <UserDiv>
-            <FiUser />
-            <FiSearch />
-            <Link href="/login" m={'0 1.2rem 0 0'}>
+            {/* <FiUser />
+            <FiSearch /> */}
+            <Link href="/login" m={'0 2.5rem 0 0'}>
               Login
             </Link>
-            <Link href="/signup">Sign Up</Link>
+
+            <Button href="/signup">Sign Up</Button>
           </UserDiv>
         </GridBox>
       </div>

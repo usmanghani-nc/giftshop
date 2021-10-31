@@ -59,6 +59,10 @@ const GlobalStyle = createGlobalStyle`
           font-family: inherit;
           padding: 0;
           margin: 0;  
+
+        }
+
+        p {
           line-height: 1.4;
         }
 
@@ -73,14 +77,14 @@ const GlobalStyle = createGlobalStyle`
 
         a {
             text-decoration: none;
-            color:${({ theme }) => theme.black};
+            color:${({ theme }) => theme.text};
             font-weight: 500;
             transition: all .3s;
             display: inline-block;
             cursor: pointer;
 
             &:hover {
-              color:${({ theme }) => theme.primary};
+              color:${({ theme }) => theme.secondary};
             }
         }
 

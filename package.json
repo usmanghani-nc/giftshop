@@ -8,7 +8,10 @@
   "scripts": {
     "push": "git add . && git commit -m",
     "postpush": "git push --all",
-    "dev" : "cd frontend/ && yarn dev",
-    "start" : "cd backend/ && yarn start"
+    "dev": "cd frontend/ && yarn dev",
+    "start": "cd backend/ && yarn start"
+  },
+  "dependencies": {
+    "react-lottie": "^1.2.3"
   }
 }

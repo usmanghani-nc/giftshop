@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "push" : "cd.. && yarn push -m"
+    "push": "cd.. && yarn push"
   },
   "dependencies": {
     "axios": "^0.23.0",
@@ -17,6 +17,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
+    "react-lottie": "^1.2.3",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {

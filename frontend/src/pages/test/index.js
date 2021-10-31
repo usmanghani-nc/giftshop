@@ -1,3 +1,9 @@
+import Kit from 'kit';
+
 export default function Test({}) {
-  return <div>test</div>;
+  return (
+    <section>
+      <Kit />
+    </section>
+  );
 }

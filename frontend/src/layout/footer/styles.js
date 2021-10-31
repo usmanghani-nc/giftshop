@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const FooterStyles = styled.footer`
-  background-color: #404864;
   padding: 3rem 0.5rem 2rem;
 
   div,
   p,
   h5 {
-    color: white;
+    color: ${({ theme }) => theme.text};
   }
 
   .footer-container {
@@ -19,35 +18,25 @@ export const FooterStyles = styled.footer`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 3rem;
-  & .heading {
-    color: #aec1d1;
-    margin-bottom: 1.5rem;
-    font-size: 3rem;
-  }
+  align-items: center;
 
-  & .heading-sm {
-    color: #aec1d1;
-    margin-bottom: 1.5rem;
-    font-size: 2.5rem;
+  & .heading {
+    color: ${({ theme }) => theme.secondary};
+    font-size: 3rem;
   }
 `;
 
 export const Copyright = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid ${({ theme }) => theme.border}};
-
+  text-align: right;
   & .yaer {
-    color: white;
+    color: ${({ theme }) => theme.secondary};
     margin-right: 1rem;
   }
 
   & .link {
-    color: #b6c7ff;
+    color: ${({ theme }) => theme.primary};
     text-decoration: underline;
   }
 

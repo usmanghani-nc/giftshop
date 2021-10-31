@@ -6,6 +6,7 @@ const defaultSize = {
   h5: '1.328rem',
   h6: '1.072rem',
   text: '1.6rem',
+  btn: '1.35rem',
 };
 
 export const sizes = {
