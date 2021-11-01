@@ -18,13 +18,26 @@ export const FooterStyles = styled.footer`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(483px, 1fr));
   grid-gap: 3rem;
   align-items: center;
 
   & .heading {
     color: ${({ theme }) => theme.secondary};
     font-size: 3rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    grid-gap: 2rem;
+  }
+`;
+
+export const Logo = styled.div`
+  height: 4rem;
+  width: 12rem;
+
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    width: 100%;
   }
 `;
 
@@ -41,7 +54,7 @@ export const Copyright = styled.div`
   }
 
   @media (max-width: ${({ theme }) => theme.responsive.md}) {
-    justify-content: flex-start;
+    text-align: center;
     padding-right: 2rem;
     padding-left: 2rem;
   }

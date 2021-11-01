@@ -11,7 +11,8 @@ export const StyledButton = styled.button`
       ? theme.secondary
       : 'linear-gradient(to right, rgba(244,68,88,1), rgba(237,105,111,1), rgba(244,68,88,1), rgba(237,105,111,1))'};
   background-size: 300% 200%;
-  box-shadow: ${({ secondary }) => !secondary && '0 5px 15px rgba(244, 68, 88, 0.4)'};
+  box-shadow: ${({ secondary, shadow }) =>
+    !secondary && shadow && '0 5px 15px rgba(244, 68, 88, 0.4)'};
   font-size: ${({ theme }) => theme.sizes.btn};
   color: white;
   border-radius: ${({ theme }) => theme.radius};

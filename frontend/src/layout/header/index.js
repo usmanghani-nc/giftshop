@@ -1,5 +1,6 @@
-import { HeaderStyles, Logo, GridBox, LogoIMG, Ul, Nav, UserDiv, Item } from './styles';
-import { FiUser, FiSearch } from 'react-icons/fi';
+import { HeaderStyles, Logo, GridBox, LogoIMG, Ul, Nav, UserDiv, Item, Manu } from './styles';
+import { FiUser, FiSearch, FiMenu } from 'react-icons/fi';
+
 import Button from 'components/button';
 
 import Link from 'components/link';
@@ -9,7 +10,7 @@ export default function Header() {
       <div className="header-container">
         <GridBox>
           <Logo>
-            <LogoIMG src="img/logo.png" alt="Giftshop" className="" alt="Giftshop" />
+            <LogoIMG src="img/logo.svg" alt="Giftshop" className="" alt="Giftshop" />
           </Logo>
 
           <Nav>
@@ -46,6 +47,10 @@ export default function Header() {
 
             <Button href="/signup">Sign Up</Button>
           </UserDiv>
+
+          <Manu>
+            <FiMenu className="menu" />
+          </Manu>
         </GridBox>
       </div>
     </HeaderStyles>

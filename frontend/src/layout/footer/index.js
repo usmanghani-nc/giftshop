@@ -1,5 +1,6 @@
-import { FooterStyles, Grid, Copyright } from './styles';
+import { FooterStyles, Grid, Copyright, Logo } from './styles';
 import Link from 'components/link';
+import Image from 'components/image';
 
 export default function footer() {
   return (
@@ -7,7 +8,9 @@ export default function footer() {
       <div className="footer-container">
         <Grid>
           <div className="gird-item">
-            <h2 className="heading">Gift Shop</h2>
+            <Logo>
+              <Image src="/img/logo.svg" alt="Giftshop" />
+            </Logo>
           </div>
 
           <div className="gird-item">

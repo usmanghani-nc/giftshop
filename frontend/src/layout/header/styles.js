@@ -17,16 +17,27 @@ export const GridBox = styled.div`
   justify-content: space-between;
   align-items: center;
   grid-gap: 1rem;
+
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
-export const Logo = styled.div`
-  height: 6rem;
-  width: 6rem;
+export const Logo = styled.div``;
+
+export const LogoIMG = styled.img`
+  width: 11.5rem;
+
+  @media (max-width: ${({ theme }) => theme.responsive.xsm}) {
+    width: 20rem;
+  }
 `;
 
-export const LogoIMG = styled.img``;
-
-export const Nav = styled.nav``;
+export const Nav = styled.nav`
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    display: none;
+  }
+`;
 
 export const Ul = styled.ul`
   display: flex;
@@ -40,4 +51,24 @@ export const UserDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    display: none;
+  }
+`;
+
+export const Manu = styled.div`
+  justify-self: end;
+  display: flex;
+  align-self: center;
+  display: none;
+
+  & .menu {
+    font-size: 35px;
+    color: ${({ theme }) => theme.black};
+  }
+
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    display: block;
+  }
 `;

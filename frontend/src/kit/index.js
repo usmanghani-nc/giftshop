@@ -1,4 +1,6 @@
 import Button from 'components/button';
+import Input from 'components/input';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -16,8 +18,8 @@ export default function Kit() {
   };
 
   return (
-    <div>
-      <div style={gap}>
+    <div style={{ display: 'flex' }}>
+      {/* <div style={gap}>
         <Button block loading>
           Button1{' '}
         </Button>
@@ -26,19 +28,22 @@ export default function Kit() {
         <Button secondary loading>
           Button1
         </Button>
+      </div> */}
+      <div style={gap}>
+        <Button>Button2</Button>
       </div>
       <div style={gap}>
-        <Button loading>Button1</Button>
-      </div>
-      <div style={gap}>
-        <Button loading={state} href="/">
+        <Button loading shadow>
           Button1
         </Button>
       </div>
+
       <div style={gap}>
-        <Button loading={state} href="/" secondary>
-          Button1
-        </Button>
+        <Input placeholder="Jon Doe" label="Name" id="name" error="text name dada" />
+      </div>
+
+      <div style={gap}>
+        <Input placeholder="Jon usman" id="name" type="email" error="EMaildada" />
       </div>
     </div>
   );

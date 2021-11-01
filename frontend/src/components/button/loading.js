@@ -12,5 +12,5 @@ export default function Loading() {
     },
   };
 
-  return <Lottie options={defaultOptions} style={{ height: '100%', width: '40px' }} />;
+  return <Lottie options={defaultOptions} style={{ height: '100%', width: '35px' }} />;
 }

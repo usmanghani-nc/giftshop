@@ -3,7 +3,7 @@ import Section from 'components/section';
 
 export default function Home({}) {
   return (
-    <Page>
+    <Page title="Home">
       <Section fullPage>
         <p> aiofbaofnaof[oi] dandiandan</p>
         <h1>hello im heading</h1>
