@@ -12,7 +12,7 @@ export default function InputCom({ placeholder, value, label, id, action, type, 
         onChange={action ? action : () => null}
         type={type ? type : 'text'}
       />
-      {error && <Error>{error}</Error>}
+      <Error active={error}>{error}</Error>
     </Wrapper>
   );
 }
@@ -24,4 +24,5 @@ InputCom.propTypes = {
   id: PropTypes.string,
   action: PropTypes.func,
   type: PropTypes.string,
+  error: PropTypes.string,
 };

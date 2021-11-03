@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  position: relative;
+`;
 
 export const Label = styled.label`
   display: block;
@@ -34,5 +36,10 @@ export const Error = styled.span`
   display: block;
   font-size: 1.3rem;
   color: ${({ theme }) => theme.danger};
-  margin-top: 0.5em;
+  transition: all 0.3s;
+  position: absolute;
+  backface-visibility: hidden;
+  opacity: ${({ active }) => (active ? 1 : 0)};
+  visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
+  transform: ${({ active }) => (active ? 'translateY(3.5px)' : 'translateY(0px)')};
 `;
