@@ -1,5 +1,9 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
   "rules": {
     "@next/next/no-document-import-in-page": "off",
     "semi": ["error", "always"],
