@@ -11,6 +11,7 @@ export default function Kit() {
     margin: '20px',
     marginTop: '28px',
   };
+
   return (
     <div style={{}}>
       <div style={gap}>
@@ -34,47 +35,54 @@ export default function Kit() {
         style={{
           maxWidth: '1200px',
           margin: '0 auto',
-        }}>
+        }}
+      >
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4 , 1fr)',
             gridGap: '20px',
-          }}>
+          }}
+        >
           <div>
             <Card
               title="Heading"
               img="/img/arrival.jpg"
               description="dada tttnm,mjyad dadadahghjjj gdthyjy fsfy"
-              price="$27"></Card>
+              price="$27"
+            ></Card>
           </div>
           <div>
             <Card
               title="Heading"
               img="/img/arrival.jpg"
               description="dada tttnm,mjyad dadadahghjjj gdthyjy fsfy"
-              price="$27"></Card>
+              price="$27"
+            ></Card>
           </div>
           <div>
             <Card
               title="Heading"
               img="/img/arrival.jpg"
               description="dada tttnm,mjyad dadadahghjjj gdthyjy fsfy"
-              price="$27"></Card>
+              price="$27"
+            ></Card>
           </div>
           <div>
             <Card
               title="Heading"
               img="/img/arrival.jpg"
               description="dada tttnm,mjyad dadadahghjjj gdthyjy fsfy"
-              price="$27"></Card>
+              price="$27"
+            ></Card>
           </div>
           <div>
             <Card
               title="Heading"
               img="/img/arrival.jpg"
               description="dada tttnm,mjyad dadadahghjjj gdthyjy fsfy"
-              price="$27"></Card>
+              price="$27"
+            ></Card>
           </div>
         </div>
       </div>

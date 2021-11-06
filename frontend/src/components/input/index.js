@@ -1,7 +1,15 @@
 import { InputStyles, Wrapper, Label, Error } from './styles';
 import PropTypes from 'prop-types';
 
-export default function InputCom({ placeholder, value, label, id, action, type, error }) {
+export default function InputCom({
+  placeholder,
+  value,
+  label,
+  id,
+  action,
+  type,
+  error,
+}) {
   return (
     <Wrapper>
       {label && <Label htmlFor={id}>{label}</Label>}

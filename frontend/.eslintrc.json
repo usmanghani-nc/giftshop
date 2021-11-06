@@ -1,3 +1,15 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "@next/next/no-document-import-in-page": "off",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "yoda": "error",
+    "no-console": ["error", { "allow": ["warn"] }],
+    "array-callback-return": ["error", { "checkForEach": true }],
+    "camelcase": ["error", { "ignoreImports": true, "allow": ["^UNSAFE_"] }],
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "no-unused-vars": "error",
+    "no-useless-return": "error"
+  }
 }
