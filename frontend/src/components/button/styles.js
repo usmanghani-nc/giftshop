@@ -5,7 +5,8 @@ export const StyledButton = styled.button`
   min-width: ${({ block }) => (block ? '100%' : '8rem')};
   height: 4rem;
 
-  background: ${({ theme, secondary }) => (secondary ? theme.secondary : theme.primary)};
+  background: ${({ theme, secondary }) =>
+    secondary ? theme.secondary : theme.primary};
   background: ${({ theme, secondary }) =>
     secondary
       ? theme.secondary
@@ -16,7 +17,7 @@ export const StyledButton = styled.button`
   font-size: ${({ theme }) => theme.sizes.btn};
   color: white;
   border-radius: ${({ theme }) => theme.radius};
-  padding: 0.5em;
+  padding: 0.5em 1em;
   cursor: pointer;
   transition: all 0.4s;
 

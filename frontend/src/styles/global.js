@@ -94,6 +94,11 @@ const GlobalStyle = createGlobalStyle`
           flex: 1 1 calc(100vh - 121px);
         }
 
+
+        .container-fluid {
+          width: 100%;
+        }
+        
         @media (max-width:${({ theme }) => theme.responsive.lg} ) {
               font-size: ${({ theme }) => theme.sizes.lg};
         }

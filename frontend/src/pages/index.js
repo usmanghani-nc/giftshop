@@ -1,33 +1,10 @@
 import Page from 'layout/page';
-import Section from 'components/section';
+import Hero from 'container/hero';
 
 export default function Home({}) {
   return (
     <Page title="Home">
-      <Section fullPage>
-        <p> aiofbaofnaof[oi] dandiandan</p>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-      </Section>
-      <Section>
-        <p> aiofbaofnaof[oi] dandiandan</p>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-      </Section>
-      <Section>
-        <p> aiofbaofnaof[oi] dandiandan</p>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-        <h1>hello im heading</h1>
-      </Section>
+      <Hero />
     </Page>
   );
 }
