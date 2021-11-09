@@ -4,7 +4,7 @@ const SectionStyled = styled.section`
   padding: ${({ fluid, noPadding }) => {
     return noPadding ? '0' : fluid ? '2rem' : '2rem 0';
   }};
-  flex: 1 1 ${({ fullPage }) => (fullPage ? 'calc(100vh - 81px)' : 'auto')};
+  flex: 1 1 ${({ fullPage }) => (fullPage ? 'calc(100vh - 150px)' : 'auto')};
   display: flex;
   align-items: stretch;
   justify-content: center;

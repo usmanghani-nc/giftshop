@@ -14,6 +14,7 @@ export const Label = styled.label`
 
 export const InputStyles = styled.input`
   height: 4rem;
+  min-width: 100%;
   border-radius: ${({ theme }) => theme.radius};
   border: none;
   padding: 0.5rem 1.6rem;
@@ -21,6 +22,8 @@ export const InputStyles = styled.input`
   font-weight: 600;
   color: ${({ theme }) => theme.black};
   letter-spacing: 0.15ch;
+  border: ${({ theme, border }) => (border ? `1px solid ${theme.border}` : '')};
+  transition: all 0.25s;
 
   &::placeholder {
     color: ${({ theme }) => theme.grey};
@@ -29,6 +32,8 @@ export const InputStyles = styled.input`
   }
   &:focus {
     outline: none;
+    border: ${({ theme, border }) =>
+      border ? `1px solid ${theme.borderActive}` : ''};
   }
 `;
 
@@ -41,5 +46,6 @@ export const Error = styled.span`
   backface-visibility: hidden;
   opacity: ${({ active }) => (active ? 1 : 0)};
   visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
-  transform: ${({ active }) => (active ? 'translateY(3.5px)' : 'translateY(0px)')};
+  transform: ${({ active }) =>
+    active ? 'translateY(3.5px)' : 'translateY(0px)'};
 `;

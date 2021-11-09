@@ -15,6 +15,7 @@ export const lightTheme = {
   info: '#47AFFF',
   black: '#393D46',
   border: '#DEE7EB',
+  borderActive: '#b7c0c4',
   radius: '6px',
   grey: '#9FA5AA',
   shadow: '0px 20px 150px -40px rgba(133, 139, 164, 0.3)',

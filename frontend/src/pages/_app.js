@@ -1,9 +1,9 @@
 import ThemeContext from 'context';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
     <ThemeContext>
-      <Component {...pageProps} />
+      <Component {...pageProps} router={router} />
     </ThemeContext>
   );
 }
