@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+
   & .form-submit-btn {
     margin-top: 1.5rem;
   }
@@ -16,6 +17,10 @@ export const Wrapper = styled.div`
     right: 0;
     transform: translate(35%, -15%) rotate(-30deg);
     font-size: 6rem;
+
+    @media (max-width: ${({ theme }) => theme.responsive.sm}) {
+      transform: translate(-30%, 25%) rotate(0deg);
+    }
   }
 `;
 
