@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const FormStyles = styled.form`
-  width: 35%;
+  width: 40%;
   background-color: ${({ theme }) => theme.bg};
   border-radius: ${({ theme }) => theme.radius};
-  padding: 2rem;
+  padding: 6rem 5rem;
   box-shadow: ${({ theme }) => theme.shadow};
+  position: relative;
 `;
 
 export const FormGroupStyles = styled.div`
