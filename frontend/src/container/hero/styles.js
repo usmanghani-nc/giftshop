@@ -6,6 +6,7 @@ export const HeroStyles = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
   padding: 10rem;
   position: relative;
   overflow: hidden;

@@ -8,12 +8,14 @@ import {
   UserDiv,
   Item,
   Manu,
-} from "./styles";
-import { FiUser, FiSearch, FiMenu } from "react-icons/fi";
+  UserICon,
+} from './styles';
+import { FiUser, FiSearch, FiMenu, FiShoppingCart } from 'react-icons/fi';
+import Badge from 'components/badge';
 
-import Button from "components/button";
+import Button from 'components/button';
 
-import Link from "components/link";
+import Link from 'components/link';
 export default function Header() {
   return (
     <HeaderStyles>
@@ -31,22 +33,22 @@ export default function Header() {
           <Nav>
             <Ul>
               <Item>
-                <Link href="/login" m={"0 3rem 0 0"}>
+                <Link href="/login" m={'0 3rem 0 0'}>
                   Home
                 </Link>
               </Item>
               <Item>
-                <Link href="/login" m={"0 3rem 0 0"}>
+                <Link href="/login" m={'0 3rem 0 0'}>
                   Eid Gifts
                 </Link>
               </Item>
               <Item>
-                <Link href="/login" m={"0 3rem 0 0"}>
+                <Link href="/login" m={'0 3rem 0 0'}>
                   Birthdays Gifts
                 </Link>
               </Item>
               <Item>
-                <Link href="/login" m={"0"}>
+                <Link href="/login" m={'0'}>
                   Wedding Gifts
                 </Link>
               </Item>
@@ -54,9 +56,18 @@ export default function Header() {
           </Nav>
 
           <UserDiv>
-            {/* <FiUser />
-            <FiSearch /> */}
-            <Link href="/login" m={"0 2.5rem 0 0"}>
+            <UserICon>
+              <FiSearch className="icons" />
+            </UserICon>
+            <UserICon>
+              <Badge className="user-item-count">4</Badge>
+              <FiShoppingCart className="icons" />
+            </UserICon>
+            <UserICon>
+              <FiUser className="icons" />
+            </UserICon>
+
+            <Link href="/login" m={'0 2.5rem 0 0'}>
               Login
             </Link>
 

@@ -72,3 +72,20 @@ export const Manu = styled.div`
     display: block;
   }
 `;
+
+export const UserICon = styled.div`
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: ${({ theme }) => theme.black};
+  position: relative;
+  &:not(:last-child) {
+    margin-right: 3rem;
+  }
+
+  & .user-item-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+`;
