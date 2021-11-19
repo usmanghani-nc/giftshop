@@ -1,27 +1,33 @@
-const time = '12:33PM';
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
 
-function convertTo24HrsFormat(time) {
-  // write your solution here
-  if (!time) return;
+const app = express();
 
-  let format = '';
+app.use(cors());
+app.use(express.json());
 
-  const [hour, min] = time.split(':') || '';
+const PORT = process.env.PORT || 8080;
 
-  const pmam = min.slice(min.length - 2);
+mongoose.connect(
+  'mongodb+srv://usman:usman123737@cluster0.aurad.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+);
 
-  const minFormat =
-    min.replace(pmam, '').length > 1 ? min.replace(pmam, '') : `0${min.replace(pmam, '')}`;
+const db = mongoose.connection;
 
-  const hourSingle = hour.length > 1 ? '0' : '';
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', function () {
+  console.log('Connected successfully');
+});
 
-  if (pmam === 'PM') {
-    format = `${hourSingle}${+hour === 12 ? hour : +hour + 12}:${minFormat}`;
-  } else {
-    format = `${hourSingle}${+hour === 12 ? '00' : hour}:${minFormat}`;
-  }
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Hello World!',
+  });
+});
 
-  return format;
-}
-
-console.log(`Converted time: ${convertTo24HrsFormat(time)}`);
+app.listen(PORT, () => console.log(`Server Running on ${PORT}`));
