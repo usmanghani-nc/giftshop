@@ -6,6 +6,7 @@
   "author": "usmanGhani16 <afro123737@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "prebuild": "git subtree push --prefix api-gifty heroku master",
     "push": "git add . && git commit -m",
     "postpush": "git push --all",
     "dev": "cd frontend/ && yarn dev",
