@@ -9,6 +9,7 @@
     "push": "git add . && git commit -m",
     "postpush": "git push --all",
     "dev": "cd frontend/ && yarn dev",
-    "start": "cd backend/ && yarn start"
-  },
+    "start": "cd backend/ && node index.js",
+    "server": "cd backend/ && yarn start"
+  }
 }
