@@ -25,9 +25,57 @@ db.once('open', function () {
 });
 
 app.get('/', (req, res) => {
-  res.json({
-    name: 'Hello World!',
-  });
+  const payload = {
+    status: 200,
+    data: [],
+    error: false,
+  };
+
+  res.status(200).json(payload);
+});
+
+app.get('/categorys', (req, res) => {
+  const data = [
+    {
+      title: 'Heading',
+      img: '/img/arrival.jpg',
+      description: 'dada tttnm,mjyad dadadahghjjj gdthyjy fsfy',
+      price: '$27',
+    },
+    {
+      title: 'Heading',
+      img: '/img/arrival.jpg',
+      description: 'dada tttnm,mjyad dadadahghjjj gdthyjy fsfy',
+      price: '$27',
+    },
+    {
+      title: 'Heading',
+      img: '/img/arrival.jpg',
+      description: 'dada tttnm,mjyad dadadahghjjj gdthyjy fsfy',
+      price: '$27',
+    },
+    {
+      title: 'Heading',
+      img: '/img/arrival.jpg',
+      description: 'dada tttnm,mjyad dadadahghjjj gdthyjy fsfy',
+      price: '$27',
+    },
+    {
+      title: 'Heading',
+      img: '/img/arrival.jpg',
+      description: 'dada tttnm,mjyad dadadahghjjj gdthyjy fsfy',
+      price: '$27',
+    },
+  ];
+  const payload = {
+    status: 200,
+    data: [],
+    error: false,
+  };
+
+  const final = { ...payload, data };
+
+  res.status(200).json(final);
 });
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`));

@@ -11,6 +11,7 @@
     "dev": "cd frontend/ && yarn dev",
     "start": "cd backend/ && node index.js",
     "server": "cd backend/ && yarn start",
-    "bump"  : "git add . && git commit -m 'BUILD PUSHING ****' || exit 0"
+    "bump"  : "git add . && git commit -m",
+    "postbump" :"git push heroku master"
   }
 }
