@@ -10,6 +10,7 @@
     "postpush": "git push --all",
     "dev": "cd frontend/ && yarn dev",
     "start": "cd backend/ && node index.js",
-    "server": "cd backend/ && yarn start"
+    "server": "cd backend/ && yarn start",
+    "bump"  : "git add . && git commit -m 'BUILD PUSHING ****' || exit 0"
   }
 }

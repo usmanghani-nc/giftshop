@@ -6,7 +6,8 @@
   "scripts": {
     "push": "cd.. && yarn push",
     "start" : "node index.js",
-    "server" : "nodemon"
+    "server" : "nodemon",
+    "bump" : "cd.. && yarn bump"
   },
   "dependencies": {
     "cors": "^2.8.5",
