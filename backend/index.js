@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
   res.status(200).json(payload);
 });
 
-app.get('/categorys', (req, res) => {
+app.get('/categories', (req, res) => {
   const data = [
     {
       title: 'Heading',
@@ -69,11 +69,11 @@ app.get('/categorys', (req, res) => {
   ];
   const payload = {
     status: 200,
-    data: [],
+    payload: [],
     error: false,
   };
 
-  const final = { ...payload, data };
+  const final = { ...payload, payload: data };
 
   res.status(200).json(final);
 });
