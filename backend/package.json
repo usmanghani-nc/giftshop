@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "push": "cd.. && yarn push",
+    "start" : "node index.js",
     "server" : "nodemon"
   },
   "dependencies": {
