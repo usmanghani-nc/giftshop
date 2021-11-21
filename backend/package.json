@@ -4,14 +4,24 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "lint" : "yarn run eslint index.js",
     "push": "cd.. && yarn push",
-    "start" : "node index.js",
-    "server" : "nodemon",
-    "bump" : "cd.. && yarn bump"
+    "start": "node index.js",
+    "server": "nodemon",
+    "bump": "yarn run lint && cd.. && yarn bump"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.13"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1"
   }
 }
