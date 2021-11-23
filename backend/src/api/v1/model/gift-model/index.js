@@ -6,6 +6,7 @@ const giftSchema = new Schema(
     description: String,
     price: Number,
     img: String,
+    category: String,
   },
   { timestamps: true },
 );

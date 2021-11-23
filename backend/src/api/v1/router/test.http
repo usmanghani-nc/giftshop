@@ -14,10 +14,10 @@ POST {{baseUrl}}/gift
 Content-Type: application/json
 
 {
-    "title": "heading 656",
+    "title": "heading 4",
     "img": "/img/arrival.jpg",
     "description": "dada tttnda mdadada dada adadadaa  adahghjjj gdthyjy fsfy",
-    "price": 200
+    "price": 101
 }
 
 
