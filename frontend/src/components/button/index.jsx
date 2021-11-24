@@ -13,6 +13,7 @@ export default function Button({
   block,
   shadow,
   className,
+  ...other
 }) {
   const BtnWrapper = (
     <StyledButton
@@ -22,6 +23,7 @@ export default function Button({
       block={block}
       shadow={shadow}
       className={className}
+      {...other}
     >
       {loading ? <Loading /> : <>{children}</>}
     </StyledButton>

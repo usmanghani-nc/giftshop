@@ -1,8 +1,12 @@
 import { FormStyles, FormGroupStyles } from './styles';
 import PropTypes from 'prop-types';
 
-export default function Form({ submit, children }) {
-  return <FormStyles onSubmit={submit}> {children} </FormStyles>;
+export default function Form({ submit, children, block }) {
+  return (
+    <FormStyles onSubmit={submit} block={block}>
+      {children}
+    </FormStyles>
+  );
 }
 
 export const FormGroup = ({ children }) => {
@@ -11,4 +15,5 @@ export const FormGroup = ({ children }) => {
 
 Form.propTypes = {
   submit: PropTypes.func.isRequired,
+  block: PropTypes.bool,
 };

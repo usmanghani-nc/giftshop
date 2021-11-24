@@ -15,9 +15,7 @@ export default function Category({ title }) {
 
   const get = async () => {
     try {
-      const { data } = await axios.get(
-        'https://api-gifty.herokuapp.com/categories'
-      );
+      const { data } = await axios.get('https://api-gifty.herokuapp.com/gift');
 
       setState({
         ...state,

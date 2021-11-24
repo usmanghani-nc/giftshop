@@ -10,6 +10,7 @@ export default function InputCom({
   type,
   error,
   border,
+  ...otherProps
 }) {
   return (
     <Wrapper>
@@ -21,6 +22,7 @@ export default function InputCom({
         onChange={action ? action : () => null}
         type={type ? type : 'text'}
         border={border}
+        {...otherProps}
       />
       <Error active={error}>{error}</Error>
     </Wrapper>

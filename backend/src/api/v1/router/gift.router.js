@@ -13,6 +13,8 @@ router.get('/gift', async (req, res) => {
 
     payload['payload'] = gifts;
 
+    console.log(payload);
+
     res.json(payload);
   } catch (e) {
     payload['status'] = 301;
@@ -29,13 +31,16 @@ router.post('/gift', async (req, res) => {
   };
 
   try {
-    const body = req.body;
+    const { category, title, description, price, img } = req.body;
 
-    const instanse = new GiftMode(body);
+    const instanse = new GiftMode({ category, title, description, price, img });
 
     await instanse.save();
 
-    payload['payload'] = 'Save Document';
+    payload['payload'] = {
+      text: 'Save Document',
+      save: true,
+    };
 
     res.json(payload);
   } catch (e) {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FormStyles = styled.form`
-  width: 40%;
+  width: ${({ block }) => (block ? '100%' : '40%')};
   background-color: ${({ theme }) => theme.bg};
   border-radius: ${({ theme }) => theme.radius};
   padding: 6rem 5rem;
