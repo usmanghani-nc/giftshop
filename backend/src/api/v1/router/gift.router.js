@@ -1,5 +1,18 @@
 const router = require('express').Router();
+const fs = require('fs');
+const path = require('path');
 const GiftMode = require('../model/gift-model');
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now());
+  },
+});
+
+const upload = multer({ storage: storage });
 
 router.get('/gift', async (req, res) => {
   const payload = {
@@ -13,8 +26,6 @@ router.get('/gift', async (req, res) => {
 
     payload['payload'] = gifts;
 
-    console.log(payload);
-
     res.json(payload);
   } catch (e) {
     payload['status'] = 301;
@@ -23,7 +34,7 @@ router.get('/gift', async (req, res) => {
   }
 });
 
-router.post('/gift', async (req, res) => {
+router.post('/gift', upload.single('img'), async (req, res, next) => {
   const payload = {
     status: 200,
     payload: [],
@@ -31,9 +42,20 @@ router.post('/gift', async (req, res) => {
   };
 
   try {
-    const { category, title, description, price, img } = req.body;
+    const { category, title, description, price } = req.body;
 
-    const instanse = new GiftMode({ category, title, description, price, img });
+    console.log(fs.readFileSync(path.join('../../../uploads/' + req.file.filename)), '????');
+
+    const instanse = new GiftMode({
+      // category: JSON.parse(category),
+      // title,
+      // description,
+      // price,
+      // img: {
+      //   data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+      //   contentType: 'image/png',
+      // },
+    });
 
     await instanse.save();
 
@@ -44,7 +66,7 @@ router.post('/gift', async (req, res) => {
 
     res.json(payload);
   } catch (e) {
-    console.log('post /gifts', e.message);
+    console.log('post /gifts erre', e.message);
 
     payload['status'] = 301;
     payload['error'] = e.message;

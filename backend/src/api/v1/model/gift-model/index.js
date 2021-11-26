@@ -5,7 +5,10 @@ const giftSchema = new Schema(
     title: String,
     description: String,
     price: Number,
-    img: String,
+    img: {
+      data: Buffer,
+      contentType: String,
+    },
     category: Object,
   },
   { timestamps: true },

@@ -32,11 +32,15 @@ export default function CMS({}) {
         items: data.payload,
       });
     } catch (e) {
+      setData({
+        ...state,
+        lading: false,
+      });
       console.log(e.message, '<=/gift');
     }
   };
   useEffect(() => {
-    f();
+    // f();
   }, []);
 
   const handleSubmit = async (event) => {
@@ -46,13 +50,26 @@ export default function CMS({}) {
       lading: true,
     });
 
+    const { title, description, price, img, category } = state;
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('img', img);
+    formData.append('category', JSON.stringify(category));
+
     try {
-      const { data } = await axios.post('http://localhost:8080/gift', {
-        ...state,
-      });
+      const { data } = await axios.post(
+        'http://localhost:8080/gift',
+        formData,
+        {
+          headers: { 'content-type': 'multipart/form-data' },
+        }
+      );
 
       if (data.payload.save) {
-        f();
+        // f();
       }
 
       setState({
@@ -60,12 +77,15 @@ export default function CMS({}) {
         lading: false,
       });
     } catch (e) {
+      setState({
+        ...state,
+        lading: false,
+      });
       console.log(e.message, '<=/gift');
     }
   };
 
   const handleInput = (event) => {
-    console.log(event.target.name, event.target.value);
     setState({
       ...state,
       [event.target.name]: event.target.value,
@@ -110,20 +130,14 @@ export default function CMS({}) {
             />
           </FormGroup>
           <FormGroup>
-            {/* <Input
-              label="Image"
+            <Input
+              action={(e) => setState({ ...state, img: e.target.files[0] })}
               placeholder="Product Image"
               type="file"
               border
-            /> */}
-            <Input
               name="img"
-              label="Image"
-              placeholder="Product Image"
-              border
-              action={handleInput}
-              value={state.img}
             />
+            {/* {state.img && state.img.name} */}
           </FormGroup>
 
           <FormGroup>
@@ -145,7 +159,7 @@ export default function CMS({}) {
           </Button>
         </Form>
 
-        <Table
+        {/* <Table
           header={[
             { Header: 'Title', accessor: 'title' },
             { Header: 'Description', accessor: 'description' },
@@ -157,7 +171,7 @@ export default function CMS({}) {
             ...el,
             category: el.category.value,
           }))}
-        />
+        /> */}
       </div>
     </Section>
   );
