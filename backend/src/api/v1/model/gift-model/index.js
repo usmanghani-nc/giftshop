@@ -2,12 +2,18 @@ const { Schema, model } = require('mongoose');
 
 const giftSchema = new Schema(
   {
-    title: String,
-    description: String,
-    price: Number,
+    title: { type: String, required: true },
+    description: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
     img: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      required: true,
     },
     category: Object,
   },

@@ -1,18 +1,25 @@
 const router = require('express').Router();
-const fs = require('fs');
-const path = require('path');
 const GiftMode = require('../model/gift-model');
 const multer = require('multer');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads');
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now());
+    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
   },
 });
 
-const upload = multer({ storage: storage });
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({ storage, fileFilter });
 
 router.get('/gift', async (req, res) => {
   const payload = {
@@ -44,17 +51,12 @@ router.post('/gift', upload.single('img'), async (req, res, next) => {
   try {
     const { category, title, description, price } = req.body;
 
-    console.log(fs.readFileSync(path.join('../../../uploads/' + req.file.filename)), '????');
-
     const instanse = new GiftMode({
-      // category: JSON.parse(category),
-      // title,
-      // description,
-      // price,
-      // img: {
-      //   data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
-      //   contentType: 'image/png',
-      // },
+      category: JSON.parse(category),
+      title,
+      description,
+      price,
+      img: req.file.path,
     });
 
     await instanse.save();

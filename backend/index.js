@@ -7,6 +7,7 @@ const multer = require('multer');
 const app = express();
 
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

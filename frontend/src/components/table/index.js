@@ -35,6 +35,8 @@ export default function Table({ header, body }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
+                console.log(cell);
+
                 return (
                   <td
                     style={{

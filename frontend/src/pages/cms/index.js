@@ -40,7 +40,7 @@ export default function CMS({}) {
     }
   };
   useEffect(() => {
-    // f();
+    f();
   }, []);
 
   const handleSubmit = async (event) => {
@@ -69,7 +69,7 @@ export default function CMS({}) {
       );
 
       if (data.payload.save) {
-        // f();
+        f();
       }
 
       setState({
@@ -137,7 +137,7 @@ export default function CMS({}) {
               border
               name="img"
             />
-            {/* {state.img && state.img.name} */}
+            {state.img && state.img.name}
           </FormGroup>
 
           <FormGroup>
@@ -159,19 +159,27 @@ export default function CMS({}) {
           </Button>
         </Form>
 
-        {/* <Table
+        <Table
           header={[
             { Header: 'Title', accessor: 'title' },
             { Header: 'Description', accessor: 'description' },
             { Header: 'Price', accessor: 'price' },
-            { Header: 'Image', accessor: 'img' },
+            {
+              Header: 'Image',
+              accessor: 'img',
+              Cell: ({ cell: { value } }) => {
+                return (
+                  <img src={'http://localhost:8080/' + value} alt={value} />
+                );
+              },
+            },
             { Header: 'Category', accessor: 'category' },
           ]}
           body={data.items.map((el) => ({
             ...el,
             category: el.category.value,
           }))}
-        /> */}
+        />
       </div>
     </Section>
   );
