@@ -1,5 +1,13 @@
 import { useMemo } from 'react';
 import { useTable } from 'react-table';
+import {
+  TableStyles,
+  TableHeaderStyles,
+  TableBodyStyles,
+  TableThStyles,
+  TableTdStyles,
+  TableTrStyles,
+} from './styles';
 
 export default function Table({ header, body }) {
   const data = useMemo(() => body, [body]);
@@ -10,50 +18,43 @@ export default function Table({ header, body }) {
     tableInstance;
 
   return (
-    <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-      <thead>
+    <TableStyles {...getTableProps()}>
+      <TableHeaderStyles>
         {
           // Loop over the header rows
           headerGroups.map((headerGroup) => {
             return (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <TableTrStyles {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => {
                   return (
-                    <th {...column.getHeaderProps()}>
+                    <TableThStyles {...column.getHeaderProps()}>
                       {column.render('Header')}
-                    </th>
+                    </TableThStyles>
                   );
                 })}
-              </tr>
+              </TableTrStyles>
             );
           })
         }
-      </thead>
-      <tbody {...getTableBodyProps()}>
+      </TableHeaderStyles>
+      <TableBodyStyles {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
+            <TableTrStyles {...row.getRowProps()}>
               {row.cells.map((cell) => {
                 console.log(cell);
 
                 return (
-                  <td
-                    style={{
-                      padding: '10px',
-                      border: 'solid 1px gray',
-                      background: 'papayawhip',
-                    }}
-                    {...cell.getCellProps()}
-                  >
+                  <TableTdStyles {...cell.getCellProps()}>
                     {cell.render('Cell')}
-                  </td>
+                  </TableTdStyles>
                 );
               })}
-            </tr>
+            </TableTrStyles>
           );
         })}
-      </tbody>
-    </table>
+      </TableBodyStyles>
+    </TableStyles>
   );
 }

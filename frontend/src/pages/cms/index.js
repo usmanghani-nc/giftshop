@@ -23,6 +23,7 @@ export default function CMS({}) {
     lading: true,
     items: [],
   });
+
   const f = async () => {
     try {
       const { data } = await axios.get('http://localhost:8080/gift');
@@ -164,15 +165,19 @@ export default function CMS({}) {
             { Header: 'Title', accessor: 'title' },
             { Header: 'Description', accessor: 'description' },
             { Header: 'Price', accessor: 'price' },
-            {
-              Header: 'Image',
-              accessor: 'img',
-              Cell: ({ cell: { value } }) => {
-                return (
-                  <img src={'http://localhost:8080/' + value} alt={value} />
-                );
-              },
-            },
+            // {
+            //   Header: 'Image',
+            //   accessor: 'img',
+            //   Cell: ({ cell: { value } }) => {
+            //     return (
+            //       <img
+            //         src={'http://localhost:8080/' + value}
+            //         alt={value}
+            //         style={{ width: '15rem' }}
+            //       />
+            //     );
+            //   },
+            // },
             { Header: 'Category', accessor: 'category' },
           ]}
           body={data.items.map((el) => ({
