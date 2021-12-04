@@ -23,7 +23,7 @@ export default function Category({ title }) {
         lading: false,
       });
     } catch (e) {
-      console.log(e.message, '<== categories');
+      console.error(e.message);
       setState({
         data: [],
         lading: false,

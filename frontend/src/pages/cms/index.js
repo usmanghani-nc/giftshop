@@ -95,9 +95,8 @@ export default function CMS({}) {
 
   return (
     <Section fullPage>
+      <h1 style={{ marginBottom: '22px' }}>CMS</h1>
       <div>
-        <h1 style={{ marginBottom: '22px' }}>CMS</h1>
-
         <Form submit={handleSubmit} block>
           <FormGroup>
             <Input
@@ -162,23 +161,44 @@ export default function CMS({}) {
 
         <Table
           header={[
-            { Header: 'Title', accessor: 'title' },
+            {
+              Header: 'Title',
+              accessor: 'title',
+              Cell: (props) => {
+                return (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                      src={'http://localhost:8080/' + props.row.original.img}
+                      alt={props.row.original.img}
+                      style={{
+                        width: '4rem',
+                        height: '4rem',
+                        marginRight: '2rem',
+                        borderRadius: '50%',
+                      }}
+                    />
+                    <span>{props.cell.value}</span>
+                  </div>
+                );
+              },
+            },
             { Header: 'Description', accessor: 'description' },
             { Header: 'Price', accessor: 'price' },
-            // {
-            //   Header: 'Image',
-            //   accessor: 'img',
-            //   Cell: ({ cell: { value } }) => {
-            //     return (
-            //       <img
-            //         src={'http://localhost:8080/' + value}
-            //         alt={value}
-            //         style={{ width: '15rem' }}
-            //       />
-            //     );
-            //   },
-            // },
             { Header: 'Category', accessor: 'category' },
+
+            {
+              Header: 'Action',
+              accessor: '_id',
+              Cell: (props) => {
+                return (
+                  <div
+                    onClick={() => console.log(props.cell.value, 'delete row')}
+                  >
+                    Delete
+                  </div>
+                );
+              },
+            },
           ]}
           body={data.items.map((el) => ({
             ...el,
