@@ -1,4 +1,12 @@
-import { CardStyle, Title, Describtion, Img, CardBody, CardFooter, Price } from './styles';
+import {
+  CardStyle,
+  Title,
+  Describtion,
+  Img,
+  CardBody,
+  CardFooter,
+  Price,
+} from './styles';
 import Image from 'components/image';
 import PropTypes from 'prop-types';
 import Button from 'components/button';

@@ -13,13 +13,17 @@ export default function Category({ title }) {
     error: null,
   });
 
+  const local = 'http://localhost:8080/';
+  const url = 'https://api-gifty.herokuapp.com/';
+
   const get = async () => {
     try {
-      const { data } = await axios.get('https://api-gifty.herokuapp.com/gift');
-      console.log(data);
+      const {
+        data: { payload },
+      } = await axios.get(`${local}gift`);
       setState({
         ...state,
-        data: data.data,
+        data: payload,
         lading: false,
       });
     } catch (e) {
@@ -49,7 +53,7 @@ export default function Category({ title }) {
               <Card
                 key={idx}
                 title={el.title}
-                img={el.img}
+                img={`${local}${el.img}`}
                 description={el.description}
                 price={el.price}
               ></Card>

@@ -165,6 +165,7 @@ export default function CMS({}) {
               Header: 'Title',
               accessor: 'title',
               Cell: (props) => {
+                console.log(props.row.original.img);
                 return (
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img
