@@ -11,7 +11,8 @@ import {
 
 export default function Table({ header, body }) {
   const data = useMemo(() => body, [body]);
-  const columns = useMemo(() => header, []);
+  const columns = useMemo(() => header, [body]);
+
   const tableInstance = useTable({ columns, data });
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -43,8 +44,6 @@ export default function Table({ header, body }) {
           return (
             <TableTrStyles {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                console.log(cell);
-
                 return (
                   <TableTdStyles {...cell.getCellProps()}>
                     {cell.render('Cell')}

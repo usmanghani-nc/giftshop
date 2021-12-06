@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const GiftMode = require('../model/gift-model');
+const GiftModel = require('../model/gift-model');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
@@ -29,7 +29,7 @@ router.get('/gift', async (req, res) => {
   };
 
   try {
-    const gifts = await GiftMode.find({});
+    const gifts = await GiftModel.find({});
 
     payload['payload'] = gifts;
 
@@ -51,7 +51,7 @@ router.post('/gift', upload.single('img'), async (req, res, next) => {
   try {
     const { category, title, description, price } = req.body;
 
-    const instanse = new GiftMode({
+    const instanse = new GiftModel({
       category: JSON.parse(category),
       title,
       description,
@@ -72,6 +72,66 @@ router.post('/gift', upload.single('img'), async (req, res, next) => {
 
     payload['status'] = 301;
     payload['error'] = e.message;
+
+    res.json(payload);
+  }
+});
+
+router.delete('/gift', async (req, res) => {
+  const payload = {
+    status: 200,
+    payload: [],
+    error: false,
+  };
+
+  const { id } = req.body;
+
+  try {
+    await GiftModel.findByIdAndRemove(id);
+
+    payload['payload'] = {
+      text: 'Document Deleted',
+      deleted: true,
+    };
+
+    res.json(payload);
+  } catch (err) {
+    console.log(err);
+
+    payload['error'] = err.message;
+
+    res.json(payload);
+  }
+});
+
+router.put('/gift', upload.single('img'), async (req, res) => {
+  const payload = {
+    status: 200,
+    payload: [],
+    error: false,
+  };
+
+  const { category, title, description, price, id } = req.body;
+
+  try {
+    await GiftModel.findByIdAndUpdate(id, {
+      category: JSON.parse(category),
+      title,
+      description,
+      price,
+      img: req.file.path,
+    });
+
+    payload['payload'] = {
+      text: 'Edit Document',
+      save: true,
+    };
+
+    res.json(payload);
+  } catch (err) {
+    console.log(err);
+
+    payload['error'] = err.message;
 
     res.json(payload);
   }

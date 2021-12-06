@@ -3,7 +3,7 @@ import Section from 'components/section';
 import Card from 'components/card';
 import axios from 'axios';
 import { FullScreenLoading } from 'components/loading';
-
+import { numberWithCommas } from 'utils/number-with-coma';
 import { Title, Wrapper } from './styles';
 
 export default function Category({ title }) {
@@ -13,14 +13,14 @@ export default function Category({ title }) {
     error: null,
   });
 
-  const local = 'http://localhost:8080/';
+  // const url = 'http://localhost:8080/';
   const url = 'https://api-gifty.herokuapp.com/';
 
   const get = async () => {
     try {
       const {
         data: { payload },
-      } = await axios.get(`${local}gift`);
+      } = await axios.get(`${url}gift`);
       setState({
         ...state,
         data: payload,
@@ -53,9 +53,9 @@ export default function Category({ title }) {
               <Card
                 key={idx}
                 title={el.title}
-                img={`${local}${el.img}`}
+                img={`${url}${el.img}`}
                 description={el.description}
-                price={el.price}
+                price={`$${numberWithCommas(el.price)}`}
               ></Card>
             );
           })
