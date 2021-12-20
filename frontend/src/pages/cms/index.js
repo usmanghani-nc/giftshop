@@ -9,8 +9,8 @@ import axios from 'axios';
 
 const Select = dynamic(() => import('components/select'), { ssr: false });
 
-const url = 'http://localhost:8080/';
-// const url = 'https://api-gifty.herokuapp.com/';
+// const url = 'http://localhost:8080/';
+const url = 'https://api-gifty.herokuapp.com/';
 
 export default function CMS({}) {
   const [state, setState] = useState({
