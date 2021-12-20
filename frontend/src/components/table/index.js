@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo, useEffect } from 'react';
 import { useTable } from 'react-table';
 import {
   TableStyles,
@@ -9,11 +9,12 @@ import {
   TableTrStyles,
 } from './styles';
 
-export default function Table({ header, body }) {
+function Table({ columns, body }) {
   const data = useMemo(() => body, [body]);
-  const columns = useMemo(() => header, [body]);
 
   const tableInstance = useTable({ columns, data });
+
+  console.log(data, columns);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
@@ -57,3 +58,5 @@ export default function Table({ header, body }) {
     </TableStyles>
   );
 }
+
+export default memo(Table);

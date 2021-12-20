@@ -12,10 +12,16 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+  if (
+    file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg'
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
+
+    return cb(new Error('Only jpeg, jpg and png types allow'));
   }
 };
 
@@ -111,7 +117,7 @@ router.put('/gift', upload.single('img'), async (req, res) => {
     error: false,
   };
 
-  const { category, title, description, price, id } = req.body;
+  const { category, title, description, price, id, img } = req.body;
 
   try {
     await GiftModel.findByIdAndUpdate(id, {
@@ -119,7 +125,7 @@ router.put('/gift', upload.single('img'), async (req, res) => {
       title,
       description,
       price,
-      img: req.file.path,
+      img: req.file?.path ? req.file.path : img,
     });
 
     payload['payload'] = {
