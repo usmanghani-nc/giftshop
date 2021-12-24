@@ -12,11 +12,13 @@ import {
 } from './styles';
 import { FiUser, FiSearch, FiMenu, FiShoppingCart } from 'react-icons/fi';
 import Badge from 'components/badge';
-
 import Button from 'components/button';
-
 import Link from 'components/link';
+import { useCartContext } from 'context/AddToCartContext';
+
 export default function Header() {
+  const { state } = useCartContext();
+
   return (
     <HeaderStyles>
       <div className="header-container">
@@ -60,7 +62,7 @@ export default function Header() {
               <FiSearch className="icons" />
             </UserICon>
             <UserICon>
-              <Badge className="user-item-count">4</Badge>
+              <Badge className="user-item-count">{state.data.length}</Badge>
               <FiShoppingCart className="icons" />
             </UserICon>
             <UserICon>

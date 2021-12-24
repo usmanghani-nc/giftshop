@@ -11,7 +11,7 @@ import Image from 'components/image';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
 
-export default function CardCom({ title, description, img, price }) {
+export default function CardCom({ title, description, img, price, action }) {
   return (
     <CardStyle>
       {img && (
@@ -24,7 +24,7 @@ export default function CardCom({ title, description, img, price }) {
         <Describtion>{description}</Describtion>
 
         <CardFooter>
-          <Button>Gift Now</Button>
+          <Button onClick={action}>Gift Now</Button>
 
           <Price>{price}</Price>
         </CardFooter>

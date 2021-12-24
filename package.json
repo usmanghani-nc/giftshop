@@ -11,7 +11,10 @@
     "dev": "cd frontend/ && yarn dev",
     "start": "cd backend/ && node index.js",
     "server": "cd backend/ && yarn server",
-    "bump"  : "git add . && git commit -m",
-    "postbump" :"git push heroku master"
+    "bump": "git add . && git commit -m",
+    "postbump": "git push heroku master"
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.1"
   }
 }

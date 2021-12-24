@@ -1,9 +1,12 @@
-import ThemeContext from 'context';
+import ThemeContext from 'context/ThemeContext';
+import AddToCartContext from 'context/AddToCartContext';
 
 function MyApp({ Component, pageProps, router }) {
   return (
     <ThemeContext>
-      <Component {...pageProps} router={router} />
+      <AddToCartContext>
+        <Component {...pageProps} router={router} />
+      </AddToCartContext>
     </ThemeContext>
   );
 }

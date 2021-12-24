@@ -5,8 +5,11 @@ import axios from 'axios';
 import { FullScreenLoading } from 'components/loading';
 import { numberWithCommas } from 'utils/number-with-coma';
 import { Title, Wrapper } from './styles';
+import { useCartContext } from 'context/AddToCartContext';
 
 export default function Category({ title }) {
+  const { fn } = useCartContext();
+
   const [state, setState] = useState({
     data: [],
     lading: true,
@@ -56,6 +59,7 @@ export default function Category({ title }) {
                 img={`${url}${el.img}`}
                 description={el.description}
                 price={`$${numberWithCommas(el.price)}`}
+                action={() => fn.addToCart({ cart: el })}
               ></Card>
             );
           })
