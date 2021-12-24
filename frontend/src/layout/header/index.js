@@ -72,40 +72,42 @@ export default function Header() {
               <FiSearch className="icons" />
             </UserICon>
 
-            <UserICon>
+            <UserICon className="cart">
               <Badge className="user-item-count">{state.data.length}</Badge>
               <FiShoppingCart className="icons" />
 
               <Cart>
-                <CartHead>
-                  <div className="text">Total</div>
-                  <div className="price">
-                    ${state.data.reduce((acc, curr) => acc + curr.price, 0)}
-                  </div>
-                </CartHead>
+                <div className="wrapper">
+                  <CartHead>
+                    <div className="text">Total</div>
+                    <div className="price">
+                      ${state.data.reduce((acc, curr) => acc + curr.price, 0)}
+                    </div>
+                  </CartHead>
 
-                {state.data?.length ? (
-                  state.data.map((el) => {
-                    return (
-                      <CartWrapper key={el?._id + Math.random()}>
-                        <CartImgWRapper>
-                          <CartImg src={`${url}${el?.img}`} />
-                        </CartImgWRapper>
+                  {state.data?.length ? (
+                    state.data.map((el) => {
+                      return (
+                        <CartWrapper key={el?._id + Math.random()}>
+                          <CartImgWRapper>
+                            <CartImg src={`${url}${el?.img}`} />
+                          </CartImgWRapper>
 
-                        <div>
-                          <CartTitle>
-                            {el?.title?.length > 20
-                              ? el?.title?.slice(0, 20) + '...'
-                              : el?.title}
-                          </CartTitle>
-                          <CartPrice>${el?.price}</CartPrice>
-                        </div>
-                      </CartWrapper>
-                    );
-                  })
-                ) : (
-                  <div>No Items</div>
-                )}
+                          <div>
+                            <CartTitle>
+                              {el?.title?.length > 20
+                                ? el?.title?.slice(0, 20) + '...'
+                                : el?.title}
+                            </CartTitle>
+                            <CartPrice>${el?.price}</CartPrice>
+                          </div>
+                        </CartWrapper>
+                      );
+                    })
+                  ) : (
+                    <div>No Items</div>
+                  )}
+                </div>
               </Cart>
             </UserICon>
 

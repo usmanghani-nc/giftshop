@@ -13,7 +13,7 @@ function reducer(state, action) {
     case 'GET_CART':
       return { ...state, data: action.payload };
     case 'ADD_TO_CART':
-      return { ...state, data: [...state.data, action.payload] };
+      return { ...state, data: action.payload };
     case 'REMOVE_CART':
       return { ...state };
     default:
@@ -38,11 +38,15 @@ export default function Context({ children }) {
 
     const prevCarts = getCarts ? JSON.parse(getCarts) : [];
 
-    const setCart = [...prevCarts, cart];
+    const findDuplicateItem = prevCarts.find((ff) => ff._id === cart._id);
 
-    localStorage.setItem('cart', JSON.stringify(setCart));
+    if (!findDuplicateItem) {
+      const setCart = [...prevCarts, cart];
 
-    dispatch({ type: 'ADD_TO_CART', payload: setCart });
+      localStorage.setItem('cart', JSON.stringify(setCart));
+
+      dispatch({ type: 'ADD_TO_CART', payload: setCart });
+    }
   };
 
   const removeCart = ({ cart }) => {

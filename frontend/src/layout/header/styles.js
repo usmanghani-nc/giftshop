@@ -72,12 +72,52 @@ export const Manu = styled.div`
   }
 `;
 
+export const Cart = styled.div`
+  position: absolute;
+  z-index: 999;
+  top: 20px;
+  left: -137px;
+  min-width: 300px;
+  padding-top: 1.5rem;
+  visibility: hidden;
+  transition: all ease 0.27s;
+  transform: translateY(-5px);
+  opacity: 0;
+
+  & .wrapper {
+    background: white;
+    padding: 2rem;
+    box-shadow: ${({ theme }) => theme.shadow};
+    border: 1px solid ${({ theme }) => theme.border};
+    border-radius: ${({ theme }) => theme.radius};
+  }
+
+  &:before {
+    content: '';
+    background: transparent;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: 51.2%;
+    top: -11px;
+  }
+`;
+
 export const UserICon = styled.div`
   font-size: 1.8rem;
   cursor: pointer;
   transition: all 0.25s;
   color: ${({ theme }) => theme.black};
   position: relative;
+
+  &.cart {
+    &:hover ${Cart} {
+      visibility: visible;
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+
   &:not(:last-child) {
     margin-right: 3rem;
   }
@@ -87,18 +127,6 @@ export const UserICon = styled.div`
     top: -5px;
     right: -10px;
   }
-`;
-
-export const Cart = styled.div`
-  background: white;
-  padding: 2rem;
-  position: absolute;
-  z-index: 999;
-  top: 48px;
-  box-shadow: ${({ theme }) => theme.shadow};
-  border: 1px solid ${({ theme }) => theme.border};
-  border-radius: ${({ theme }) => theme.radius};
-  min-width: 300px;
 `;
 
 export const CartWrapper = styled.div`
