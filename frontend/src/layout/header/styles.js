@@ -51,7 +51,6 @@ export const UserDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
   @media (max-width: ${({ theme }) => theme.responsive.md}) {
     display: none;
   }
@@ -87,5 +86,65 @@ export const UserICon = styled.div`
     position: absolute;
     top: -5px;
     right: -10px;
+  }
+`;
+
+export const Cart = styled.div`
+  background: white;
+  padding: 2rem;
+  position: absolute;
+  z-index: 999;
+  top: 48px;
+  box-shadow: ${({ theme }) => theme.shadow};
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: ${({ theme }) => theme.radius};
+  min-width: 300px;
+`;
+
+export const CartWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0rem 0rem 2.5rem;
+`;
+
+export const CartImgWRapper = styled.div`
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 100%;
+  margin-right: 1.2rem;
+`;
+
+export const CartImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+`;
+
+export const CartTitle = styled.h5`
+  font-size: 1.35rem;
+  margin-bottom: 2px;
+`;
+
+export const CartPrice = styled.p`
+  font-size: 1.3rem;
+`;
+
+export const CartHead = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${({ theme }) => theme.border};
+
+  .text {
+    color: ${({ theme }) => theme.secondary};
+    font-size: 1.4rem;
+  }
+
+  .price {
+    color: ${({ theme }) => theme.primary};
+    font-size: 1.4rem;
   }
 `;
