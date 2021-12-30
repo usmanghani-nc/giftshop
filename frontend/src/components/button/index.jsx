@@ -29,7 +29,13 @@ export default function Button({
     </StyledButton>
   );
 
-  const Wrapper = href ? <Link href={href}>{BtnWrapper}</Link> : BtnWrapper;
+  const Wrapper = href ? (
+    <Link href={href} style={{ width: block ? '100%' : '' }}>
+      {BtnWrapper}
+    </Link>
+  ) : (
+    BtnWrapper
+  );
 
   return Wrapper;
 }

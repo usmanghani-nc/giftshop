@@ -92,6 +92,23 @@ export const Cart = styled.div`
     border-radius: ${({ theme }) => theme.radius};
   }
 
+  & .cart-right {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  & .trash {
+    text-decoration: underline;
+    font-size: 1rem;
+    color: ${({ theme }) => theme.secondary};
+    transition: all ease 0.27s;
+
+    &:hover {
+      color: ${({ theme }) => theme.primary};
+    }
+  }
+
   &:before {
     content: '';
     background: transparent;

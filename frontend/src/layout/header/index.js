@@ -24,7 +24,7 @@ import Link from 'components/link';
 import { useCartContext } from 'context/AddToCartContext';
 
 export default function Header() {
-  const { state } = useCartContext();
+  const { state, fn } = useCartContext();
 
   // const url = 'http://localhost:8080/';
   const url = 'https://api-gifty.herokuapp.com/';
@@ -93,13 +93,22 @@ export default function Header() {
                             <CartImg src={`${url}${el?.img}`} />
                           </CartImgWRapper>
 
-                          <div>
-                            <CartTitle>
-                              {el?.title?.length > 20
-                                ? el?.title?.slice(0, 20) + '...'
-                                : el?.title}
-                            </CartTitle>
-                            <CartPrice>${el?.price}</CartPrice>
+                          <div className="cart-right">
+                            <div>
+                              <CartTitle>
+                                {el?.title?.length > 10
+                                  ? el?.title?.slice(0, 10) + ' ...'
+                                  : el?.title}
+                              </CartTitle>
+                              <CartPrice>${el?.price}</CartPrice>
+                            </div>
+
+                            <div
+                              className="trash"
+                              onClick={() => fn.removeCart(el._id)}
+                            >
+                              Trash
+                            </div>
                           </div>
                         </CartWrapper>
                       );
@@ -107,6 +116,10 @@ export default function Header() {
                   ) : (
                     <div>No Items</div>
                   )}
+
+                  <Button href="/checkout" block secondary>
+                    Checkout
+                  </Button>
                 </div>
               </Cart>
             </UserICon>

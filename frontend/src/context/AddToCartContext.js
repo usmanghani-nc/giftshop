@@ -15,7 +15,10 @@ function reducer(state, action) {
     case 'ADD_TO_CART':
       return { ...state, data: action.payload };
     case 'REMOVE_CART':
-      return { ...state };
+      return {
+        ...state,
+        data: action.payload,
+      };
     default:
       state;
   }
@@ -49,8 +52,14 @@ export default function Context({ children }) {
     }
   };
 
-  const removeCart = ({ cart }) => {
-    dispatch({ type: 'REMOVE_CART', payload: cart });
+  const removeCart = (id) => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+
+    const cartRemove = cart.filter((el) => el._id !== id);
+
+    localStorage.setItem('cart', JSON.stringify(cartRemove));
+
+    dispatch({ type: 'REMOVE_CART', payload: cartRemove });
   };
 
   return (
