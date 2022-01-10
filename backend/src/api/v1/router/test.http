@@ -23,5 +23,32 @@ Content-Type: application/json
 
 
 
+#### POST
+POST {{baseUrl}}/signup
+Content-Type: application/json
+
+{
+    "fullName": "Usman ghani",
+    "email": "usmanghani@gmail.com",
+    "password": "dragan321"
+}
+
+
+#### POST
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "usmanghani@gmail.com",
+    "password": "dragan32da1"
+}
+
+
+
+
+
+
+
+
 
 

@@ -5,12 +5,9 @@ import Button from 'components/button';
 import Form, { FormGroup } from 'components/form';
 import Table from 'components/table';
 import dynamic from 'next/dynamic';
-import axios from 'axios';
+import API from 'endpoint';
 
 const Select = dynamic(() => import('components/select'), { ssr: false });
-
-// const url = 'http://localhost:8080/';
-const url = 'https://api-gifty.herokuapp.com/';
 
 export default function CMS({}) {
   const [state, setState] = useState({
@@ -31,7 +28,7 @@ export default function CMS({}) {
 
   const f = async () => {
     try {
-      const { data } = await axios.get(`${url}gift`);
+      const { data } = await API.get(`/gift`);
 
       setData({
         lading: false,
@@ -67,7 +64,7 @@ export default function CMS({}) {
     formData.append('category', JSON.stringify(category));
 
     try {
-      const { data } = await axios.post(`${url}gift`, formData, {
+      const { data } = await API.post(`/gift`, formData, {
         headers: { 'content-type': 'multipart/form-data' },
       });
 
@@ -97,7 +94,7 @@ export default function CMS({}) {
 
   const handleDelet = async (id) => {
     try {
-      const { data } = await axios.delete(`${url}gift`, {
+      const { data } = await API.delete(`/gift`, {
         data: {
           id,
         },
@@ -126,7 +123,7 @@ export default function CMS({}) {
       formData.append('img', img);
       formData.append('category', JSON.stringify(category));
 
-      const { data } = await axios.put(`${url}gift`, formData, {
+      const { data } = await API.put(`/gift`, formData, {
         headers: { 'content-type': 'multipart/form-data' },
       });
 

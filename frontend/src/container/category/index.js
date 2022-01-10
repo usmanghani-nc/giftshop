@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Section from 'components/section';
 import Card from 'components/card';
-import axios from 'axios';
+import API from 'endpoint';
 import { FullScreenLoading } from 'components/loading';
 import { numberWithCommas } from 'utils/number-with-coma';
 import { Title, Wrapper } from './styles';
@@ -16,14 +16,14 @@ export default function Category({ title }) {
     error: null,
   });
 
-  // const url = 'http://localhost:8080/';
-  const url = 'https://api-gifty.herokuapp.com/';
+  const url = 'http://localhost:8080/';
+  // const url = 'https://api-gifty.herokuapp.com/';
 
   const get = async () => {
     try {
       const {
         data: { payload },
-      } = await axios.get(`${url}gift`);
+      } = await API.get(`/gift`);
       setState({
         ...state,
         data: payload,

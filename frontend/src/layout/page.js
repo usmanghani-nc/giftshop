@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Header from 'layout/header';
 import Footer from 'layout/footer';
 import styled from 'styled-components';
+import { useAuthContext } from 'context/AuthContext';
 
 const PageStyles = styled.div`
   display: grid;
@@ -16,6 +17,8 @@ const MainStyles = styled.main`
 `;
 
 export default function Page({ children, noHeader, nofooter, title }) {
+  const { state } = useAuthContext();
+
   return (
     <PageStyles>
       <Head>
@@ -50,7 +53,7 @@ export default function Page({ children, noHeader, nofooter, title }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      {!noHeader && <Header />}
+      {!noHeader && <Header user={state.user} />}
 
       <MainStyles>{children}</MainStyles>
 
