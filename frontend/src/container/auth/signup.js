@@ -71,73 +71,83 @@ export default function Login({ router }) {
       return;
     }
 
-    fn.signup(state);
-
-    router.push('/');
+    fn.signup(state, () => router.push('/'));
   };
 
   return (
     <Wrapper>
-      <Form submit={handleSubmit}>
-        <GiBowTieRibbon className="ribbon-icon" />
+      {ctx.user?.data?._id ? (
+        <Form>
+          <h3 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            You are already logged in {ctx.user.data.fullName}
+          </h3>
 
-        <FormTitle>Sign up</FormTitle>
+          <Button block href="/">
+            Back to shopping
+          </Button>
+        </Form>
+      ) : (
+        <Form submit={handleSubmit}>
+          <GiBowTieRibbon className="ribbon-icon" />
 
-        <Text>
-          <span className="text">Already have an account?</span>
-          <LinkStyle href="/login">Sign in here</LinkStyle>
-        </Text>
+          <FormTitle>Sign up</FormTitle>
 
-        <FormGroup>
-          <Input
-            action={handleChange}
-            border
-            label="Full name"
-            placeholder="Jhon wick"
-            name="fullName"
-            value={state.fullName}
-          />
-        </FormGroup>
+          <Text>
+            <span className="text">Already have an account?</span>
+            <LinkStyle href="/login">Sign in here</LinkStyle>
+          </Text>
 
-        <FormGroup>
-          <Input
-            action={handleChange}
-            border
-            label="Email"
-            placeholder="example@mail.com"
-            name="email"
-            value={state.email}
-          />
-        </FormGroup>
+          <FormGroup>
+            <Input
+              action={handleChange}
+              border
+              label="Full name"
+              placeholder="Jhon wick"
+              name="fullName"
+              value={state.fullName}
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <Input
-            action={handleChange}
-            border
-            label="Password"
-            placeholder="Your password"
-            name="password"
-            type="password"
-            value={state.password}
-          />
-        </FormGroup>
+          <FormGroup>
+            <Input
+              action={handleChange}
+              border
+              label="Email"
+              placeholder="example@mail.com"
+              name="email"
+              value={state.email}
+            />
+          </FormGroup>
 
-        <FormGroup>
-          <Input
-            action={handleChange}
-            border
-            label="Confirm password"
-            placeholder="Retype your password"
-            name="confirmPassword"
-            type="password"
-            value={state.confirmPassword}
-          />
-        </FormGroup>
+          <FormGroup>
+            <Input
+              action={handleChange}
+              border
+              label="Password"
+              placeholder="Your password"
+              name="password"
+              type="password"
+              value={state.password}
+            />
+          </FormGroup>
 
-        <Button className="form-submit-btn" loading={ctx.loading} block>
-          Register
-        </Button>
-      </Form>
+          <FormGroup>
+            <Input
+              action={handleChange}
+              border
+              label="Confirm password"
+              placeholder="Retype your password"
+              name="confirmPassword"
+              type="password"
+              value={state.confirmPassword}
+            />
+          </FormGroup>
+
+          <Button className="form-submit-btn" loading={ctx.loading} block>
+            Register
+          </Button>
+        </Form>
+      )}
     </Wrapper>
   );
 }

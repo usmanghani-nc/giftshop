@@ -1,5 +1,6 @@
 import API from 'endpoint';
 import { useReducer, useContext, createContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 const AuthContext = createContext();
 
@@ -39,12 +40,15 @@ const reducer = (state, action) => {
 };
 
 export default function Context({ children }) {
+  const router = useRouter();
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const getUser = async () => {
     try {
-      const { data } = await API.get('/');
+      dispatch({ type: 'LOADING' });
 
+      const { data } = await API.get('/');
       dispatch({ type: 'CURRENT_USER', payload: data });
     } catch (e) {
       dispatch({ type: 'ERROR', payload: e.messag });
@@ -54,43 +58,59 @@ export default function Context({ children }) {
 
   const login = async (userData) => {
     try {
-      const { data } = await API.post('/login', {
-        userData,
-      });
+      // dispatch({ type: 'LOADING' });
 
-      dispatch({ type: 'CURRENT_USER', payload: data });
+      const { data } = await API.post('/login', userData);
+      if (data.payload.token) {
+        localStorage.setItem('token', data.payload.token);
+
+        dispatch({ type: 'CURRENT_USER', payload: data.payload.user });
+
+        router.push('/');
+      } else {
+        dispatch({ type: 'CURRENT_USER', payload: null });
+      }
     } catch (e) {
       dispatch({ type: 'ERROR', payload: e.messag });
       console.error(e.message);
     }
   };
 
-  const signup = async (userData, callBack) => {
+  const signup = async (userData) => {
     try {
-      dispatch({ type: 'LOADING' });
+      // dispatch({ type: 'LOADING' });
 
       const { data } = await API.post('/signup', userData);
 
-      localStorage.setItem('token', data.payload.token);
+      if (data.payload.token) {
+        localStorage.setItem('token', data.payload.token);
 
-      dispatch({ type: 'CURRENT_USER', payload: data });
+        dispatch({ type: 'CURRENT_USER', payload: data.payload.user });
 
-      callBack();
+        router.push('/');
+      } else {
+        dispatch({ type: 'CURRENT_USER', payload: null });
+      }
     } catch (e) {
       dispatch({ type: 'ERROR', payload: e.messag });
       console.error(e.message);
     }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+
+    dispatch({ type: 'CURRENT_USER', payload: null });
   };
 
   useEffect(() => {
     getUser();
   }, []);
-
   return (
     <AuthContext.Provider
       value={{
         state: state,
-        fn: { signup, login },
+        fn: { signup, login, logout },
       }}
     >
       {children}

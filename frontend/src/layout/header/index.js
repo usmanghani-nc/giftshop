@@ -23,11 +23,11 @@ import Button from 'components/button';
 import Link from 'components/link';
 import { useCartContext } from 'context/AddToCartContext';
 
-export default function Header({ user }) {
+export default function Header({ user, logoutAction }) {
   const { state, fn } = useCartContext();
 
-  // const url = 'http://localhost:8080/';
-  const url = 'https://api-gifty.herokuapp.com/';
+  const url = 'http://localhost:8080/';
+  // const url = 'https://api-gifty.herokuapp.com/';
 
   return (
     <HeaderStyles>
@@ -71,7 +71,7 @@ export default function Header({ user }) {
             <UserICon>
               <FiSearch className="icons" />
             </UserICon>
-            {user?.data ? (
+            {user?.data?._id ? (
               <>
                 <UserICon className="cart">
                   <Badge className="user-item-count">{state.data.length}</Badge>
@@ -140,10 +140,11 @@ export default function Header({ user }) {
                           color: '#000',
                         }}
                       >
-                        Usman Ghani
+                        {user.data.fullName}
                       </div>
 
                       <Button
+                        action={logoutAction}
                         style={{
                           background: 'none',
                           padding: 0,

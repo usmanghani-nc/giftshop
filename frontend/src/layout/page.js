@@ -3,6 +3,7 @@ import Header from 'layout/header';
 import Footer from 'layout/footer';
 import styled from 'styled-components';
 import { useAuthContext } from 'context/AuthContext';
+import { FullScreenLoading } from 'components/loading';
 
 const PageStyles = styled.div`
   display: grid;
@@ -17,7 +18,7 @@ const MainStyles = styled.main`
 `;
 
 export default function Page({ children, noHeader, nofooter, title }) {
-  const { state } = useAuthContext();
+  const { state, fn } = useAuthContext();
 
   return (
     <PageStyles>
@@ -53,11 +54,18 @@ export default function Page({ children, noHeader, nofooter, title }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      {!noHeader && <Header user={state.user} />}
 
-      <MainStyles>{children}</MainStyles>
+      {state.loading ? (
+        <FullScreenLoading />
+      ) : (
+        <>
+          {!noHeader && <Header user={state.user} logoutAction={fn.logout} />}
 
-      {!nofooter && <Footer />}
+          <MainStyles>{children}</MainStyles>
+
+          {!nofooter && <Footer />}
+        </>
+      )}
     </PageStyles>
   );
 }

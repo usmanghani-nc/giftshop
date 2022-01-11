@@ -13,11 +13,11 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const userPasswordCompare = await bcrypt.compare(password, hash);
+    const user = await UserModel.findOne({ email });
+    if (user) {
+      const userPasswordCompare = await bcrypt.compare(password, user.password);
 
-    if (userPasswordCompare) {
-      const user = await UserModel.findOne({ email });
-      if (user._id) {
+      if (userPasswordCompare) {
         const token = jwt.sign(
           {
             id: user._id,
@@ -25,16 +25,18 @@ router.post('/login', async (req, res) => {
           },
           process.env.JWT_SECRETE,
         );
-
         payload['status'] = 202;
         payload['payload'] = {
-          ...user,
+          user,
           token,
         };
+      } else {
+        payload['status'] = 301;
+        payload['error'] = 'Invalid email or password';
       }
     } else {
       payload['status'] = 301;
-      payload['error'] = 'Invalid email or password';
+      payload['error'] = 'no user found';
     }
   } catch (e) {
     console.log('post /signup erre', e.message);
@@ -77,7 +79,7 @@ router.post('/signup', async (req, res) => {
     payload['status'] = 202;
 
     payload['payload'] = {
-      ...user,
+      user,
       text: 'New user Added',
       signup: true,
       token,
