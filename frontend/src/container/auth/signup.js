@@ -143,7 +143,7 @@ export default function Login({ router }) {
             />
           </FormGroup>
 
-          <Button className="form-submit-btn" loading={ctx.loading} block>
+          <Button className="form-submit-btn" loading={ctx.formLoading} block>
             Register
           </Button>
         </Form>

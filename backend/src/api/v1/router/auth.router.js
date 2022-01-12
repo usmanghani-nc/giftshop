@@ -27,7 +27,6 @@ router.post('/login', async (req, res) => {
         );
         payload['status'] = 202;
         payload['payload'] = {
-          user,
           token,
         };
       } else {
@@ -79,9 +78,6 @@ router.post('/signup', async (req, res) => {
     payload['status'] = 202;
 
     payload['payload'] = {
-      user,
-      text: 'New user Added',
-      signup: true,
       token,
     };
   } catch (e) {

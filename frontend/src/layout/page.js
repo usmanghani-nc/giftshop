@@ -19,7 +19,6 @@ const MainStyles = styled.main`
 
 export default function Page({ children, noHeader, nofooter, title }) {
   const { state, fn } = useAuthContext();
-
   return (
     <PageStyles>
       <Head>

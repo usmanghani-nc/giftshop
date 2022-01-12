@@ -49,7 +49,7 @@ export default function Login({ router }) {
       return;
     }
 
-    fn.login(state, () => router.push('/'));
+    fn.login(state);
   };
 
   return (
@@ -66,6 +66,16 @@ export default function Login({ router }) {
         </Form>
       ) : (
         <Form submit={handleSubmit}>
+          {ctx.error && (
+            <div
+              style={{
+                marginBottom: '2rem',
+                color: 'red',
+              }}
+            >
+              {`*${ctx.error}`}
+            </div>
+          )}
           <GiBowTieRibbon className="ribbon-icon" />
 
           <FormTitle>Sign in</FormTitle>
@@ -98,12 +108,7 @@ export default function Login({ router }) {
             />
           </FormGroup>
 
-          <Button
-            className="form-submit-btn"
-            // loading={ctx.loading}
-
-            block
-          >
+          <Button className="form-submit-btn" loading={ctx.formLoading} block>
             Login
           </Button>
         </Form>
