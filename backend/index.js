@@ -25,9 +25,11 @@ db.once('open', () => console.log('Connected successfully'));
 const homeRouter = require('./src/api/v1/router/home.router');
 const giftRouter = require('./src/api/v1/router/gift.router');
 const authRouter = require('./src/api/v1/router/auth.router');
+const CheckoutSession = require('./src/api/v1/router/checkout.router');
 
 app.use(homeRouter);
 app.use(giftRouter);
 app.use(authRouter);
+app.use(CheckoutSession);
 
 app.listen(PORT, () => console.log(`Server Running on ${PORT}`));

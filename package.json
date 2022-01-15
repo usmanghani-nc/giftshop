@@ -15,6 +15,7 @@
     "postbump": "git push heroku master"
   },
   "dependencies": {
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "stripe": "^8.197.0"
   }
 }

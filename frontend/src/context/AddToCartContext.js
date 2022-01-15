@@ -1,4 +1,6 @@
 import { useReducer, useContext, createContext, useEffect } from 'react';
+import API from 'endpoint';
+import router from 'next/router';
 
 const CartContext = createContext();
 
@@ -62,6 +64,24 @@ export default function Context({ children }) {
     dispatch({ type: 'REMOVE_CART', payload: cartRemove });
   };
 
+  const checkout = async ({}) => {
+    try {
+      const cart = JSON.parse(localStorage.getItem('cart'));
+
+      const { data } = await API.post('/checkout', { cart });
+
+      if (data.payload.url) {
+        router.push(data.payload.url);
+
+        if (!router.query.cancel) {
+          localStorage.removeItem('cart');
+        }
+      }
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -69,6 +89,7 @@ export default function Context({ children }) {
         fn: {
           addToCart,
           removeCart,
+          checkout,
         },
       }}
     >

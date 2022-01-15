@@ -119,10 +119,16 @@ export default function Header({ user, logoutAction }) {
                           );
                         })
                       ) : (
-                        <div>No Items</div>
+                        <div
+                          style={{
+                            marginBottom: 20,
+                          }}
+                        >
+                          No Items
+                        </div>
                       )}
 
-                      <Button href="/checkout" block secondary>
+                      <Button action={fn.checkout} block secondary>
                         Checkout
                       </Button>
                     </div>
