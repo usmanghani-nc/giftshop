@@ -1,4 +1,4 @@
-import { useMemo, memo, useEffect } from 'react';
+import { useMemo, memo } from 'react';
 import { useTable } from 'react-table';
 import {
   TableStyles,
@@ -14,8 +14,6 @@ function Table({ columns, body }) {
 
   const tableInstance = useTable({ columns, data });
 
-  console.log(data, columns);
-
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;
 
@@ -24,12 +22,12 @@ function Table({ columns, body }) {
       <TableHeaderStyles>
         {
           // Loop over the header rows
-          headerGroups.map((headerGroup) => {
+          headerGroups.map((headerGroup, idx) => {
             return (
-              <TableTrStyles {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => {
+              <TableTrStyles key={idx} {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column, idx) => {
                   return (
-                    <TableThStyles {...column.getHeaderProps()}>
+                    <TableThStyles key={idx} {...column.getHeaderProps()}>
                       {column.render('Header')}
                     </TableThStyles>
                   );
@@ -40,13 +38,13 @@ function Table({ columns, body }) {
         }
       </TableHeaderStyles>
       <TableBodyStyles {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row, idx) => {
           prepareRow(row);
           return (
-            <TableTrStyles {...row.getRowProps()}>
-              {row.cells.map((cell) => {
+            <TableTrStyles key={idx} {...row.getRowProps()}>
+              {row.cells.map((cell, idx) => {
                 return (
-                  <TableTdStyles {...cell.getCellProps()}>
+                  <TableTdStyles key={idx} {...cell.getCellProps()}>
                     {cell.render('Cell')}
                   </TableTdStyles>
                 );

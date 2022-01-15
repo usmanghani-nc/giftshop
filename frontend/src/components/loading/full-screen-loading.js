@@ -1,9 +1,10 @@
 import { FullScreenStyles } from './styles';
+import Image from 'components/image';
 
 export default function fullScreeLoading() {
   return (
     <FullScreenStyles>
-      <img src="img/logo.svg" />
+      <Image src="img/logo.svg" alt="logo image" />
     </FullScreenStyles>
   );
 }
