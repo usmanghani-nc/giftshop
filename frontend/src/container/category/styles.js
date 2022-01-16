@@ -16,3 +16,10 @@ export const Wrapper = styled.div`
   grid-gap: 2.5rem;
   margin: 5rem 0;
 `;
+
+export const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 600px);
+`;

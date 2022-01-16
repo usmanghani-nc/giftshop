@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Section from 'components/section';
 import Card from 'components/card';
 import API from 'endpoint';
-import { FullScreenLoading } from 'components/loading';
+import { Loader } from 'components/loading';
 import { numberWithCommas } from 'utils/number-with-coma';
-import { Title, Wrapper } from './styles';
+import { Title, Wrapper, LoadingBox } from './styles';
 import { useCartContext } from 'context/AddToCartContext';
 
 export default function Category({ title }) {
@@ -47,11 +47,13 @@ export default function Category({ title }) {
     <Section>
       <Title>{title}</Title>
 
-      <Wrapper>
-        {state.lading ? (
-          <FullScreenLoading />
-        ) : (
-          state.data.map((el, idx) => {
+      {state.lading ? (
+        <LoadingBox>
+          <Loader />
+        </LoadingBox>
+      ) : (
+        <Wrapper>
+          {state.data.map((el, idx) => {
             return (
               <Card
                 key={idx}
@@ -62,9 +64,9 @@ export default function Category({ title }) {
                 action={() => fn.addToCart({ cart: el })}
               ></Card>
             );
-          })
-        )}
-      </Wrapper>
+          })}
+        </Wrapper>
+      )}
     </Section>
   );
 }

@@ -8,6 +8,7 @@ export const useCartContext = () => useContext(CartContext);
 
 const initialState = {
   data: [],
+  noCheckout: false,
 };
 
 function reducer(state, action) {
@@ -21,6 +22,12 @@ function reducer(state, action) {
         ...state,
         data: action.payload,
       };
+    case 'NO_CHECKOUT':
+      return {
+        ...state,
+        noCheckout: action.payload,
+      };
+
     default:
       state;
   }
@@ -39,18 +46,24 @@ export default function Context({ children }) {
   }, []);
 
   const addToCart = ({ cart }) => {
-    const getCarts = localStorage.getItem('cart');
+    const token = localStorage.getItem('token');
 
-    const prevCarts = getCarts ? JSON.parse(getCarts) : [];
+    if (token) {
+      const getCarts = localStorage.getItem('cart');
 
-    const findDuplicateItem = prevCarts.find((ff) => ff._id === cart._id);
+      const prevCarts = getCarts ? JSON.parse(getCarts) : [];
 
-    if (!findDuplicateItem) {
-      const setCart = [...prevCarts, cart];
+      const findDuplicateItem = prevCarts.find((ff) => ff._id === cart._id);
 
-      localStorage.setItem('cart', JSON.stringify(setCart));
+      if (!findDuplicateItem) {
+        const setCart = [...prevCarts, cart];
 
-      dispatch({ type: 'ADD_TO_CART', payload: setCart });
+        localStorage.setItem('cart', JSON.stringify(setCart));
+
+        dispatch({ type: 'ADD_TO_CART', payload: setCart });
+      }
+    } else {
+      dispatch({ type: 'NO_CHECKOUT', payload: true });
     }
   };
 
@@ -68,19 +81,23 @@ export default function Context({ children }) {
     try {
       const cart = JSON.parse(localStorage.getItem('cart'));
 
-      const { data } = await API.post('/checkout', { cart });
+      if (cart.length) {
+        const { data } = await API.post('/checkout', { cart });
 
-      if (data.payload.url) {
-        router.push(data.payload.url);
+        if (data.payload.url) {
+          router.push(data.payload.url);
 
-        if (!router.query.cancel) {
-          localStorage.removeItem('cart');
+          if (!router.query.cancel) {
+            localStorage.removeItem('cart');
+          }
         }
       }
     } catch (e) {
       console.log(e.message);
     }
   };
+
+  const removeModal = () => dispatch({ type: 'NO_CHECKOUT', payload: false });
 
   return (
     <CartContext.Provider
@@ -90,6 +107,7 @@ export default function Context({ children }) {
           addToCart,
           removeCart,
           checkout,
+          removeModal,
         },
       }}
     >

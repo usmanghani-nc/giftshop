@@ -14,7 +14,31 @@ router.post('/checkout', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
-
+      shipping_address_collection: {
+        allowed_countries: ['US', 'CA', 'GB', 'PK'],
+      },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: {
+              amount: 1500,
+              currency: 'usd',
+            },
+            display_name: 'Estimate time to deliver',
+            delivery_estimate: {
+              minimum: {
+                unit: 'day',
+                value: 1,
+              },
+              maximum: {
+                unit: 'day',
+                value: 7,
+              },
+            },
+          },
+        },
+      ],
       line_items: cart.map((el) => {
         return {
           price_data: {
@@ -28,8 +52,8 @@ router.post('/checkout', async (req, res) => {
           quantity: 1,
         };
       }),
-      success_url: 'https://giftshop-mu.vercel.app?success=Payment+Success',
-      cancel_url: 'https://giftshop-mu.vercel.app?cancel=Payment+Cancel',
+      success_url: 'https://giftshop-mu.vercel.app/?success=Payment+Success',
+      cancel_url: 'https://giftshop-mu.vercel.app/?cancel=Payment+Cancel',
     });
 
     payload['payload'] = {

@@ -22,6 +22,7 @@ import Badge from 'components/badge';
 import Button from 'components/button';
 import Link from 'components/link';
 import { useCartContext } from 'context/AddToCartContext';
+import Modal from 'components/modal';
 
 export default function Header({ user, logoutAction }) {
   const { state, fn } = useCartContext();
@@ -188,6 +189,21 @@ export default function Header({ user, logoutAction }) {
           </Manu>
         </GridBox>
       </div>
+
+      <Modal toggle={fn.removeModal} isOpen={state.noCheckout}>
+        <h3
+          style={{
+            marginBottom: '3rem',
+            textAlign: 'center',
+            fontSize: '2rem',
+          }}
+        >
+          You must login first to add items in Cart
+        </h3>
+        <Button action={fn.removeModal} href="/login" block>
+          Login
+        </Button>
+      </Modal>
     </HeaderStyles>
   );
 }
