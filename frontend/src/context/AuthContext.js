@@ -67,7 +67,7 @@ export default function Context({ children }) {
       const { data } = await API.get('/');
       dispatch({ type: 'CURRENT_USER', payload: data });
 
-      data.data && router.push('/');
+      // data.data && router.push('/');
     } catch (e) {
       dispatch({ type: 'ERROR', payload: e.messag });
       console.error(e.message);
@@ -100,10 +100,11 @@ export default function Context({ children }) {
 
   const signup = async (userData) => {
     try {
+      dispatch({ type: 'ERROR', payload: '' });
+
       setLoading(true);
 
       const { data } = await API.post('/signup', userData);
-
       if (data.payload.token) {
         localStorage.setItem('token', data.payload.token);
 

@@ -16,12 +16,14 @@ export default function Login({ router }) {
     confirmPassword: '',
   });
 
-  const [error, setError] = useState({
+  const initError = {
     fullName: '',
     email: '',
     password: '',
     confirmPassword: '',
-  });
+  };
+
+  const [error, setError] = useState(initError);
 
   const handleChange = (e) => {
     setState({
@@ -30,48 +32,59 @@ export default function Login({ router }) {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleError = () => {
     const { fullName, email, password, confirmPassword } = state;
 
-    if (!fullName) {
-      setError({
-        ...error,
-        fullName: 'FullName Empty',
-      });
+    const e = {
+      fullName: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      state: false,
+    };
 
-      return;
+    setError(initError);
+
+    if (!fullName) {
+      e['fullName'] = 'FullName Emptyy';
+      e['state'] = true;
     }
 
     if (!email) {
-      setError({
-        ...error,
-        email: 'Email Empty',
-      });
-
-      return;
+      e['email'] = 'Email empty';
+      e['state'] = true;
     }
 
-    if (!fullName) {
-      setError({
-        ...error,
-        fullName: 'Error',
-      });
+    if (!password.length) {
+      e['password'] = 'Password empty';
+      e['state'] = true;
+    }
 
-      return;
+    if (!confirmPassword) {
+      e['confirmPassword'] = 'Confirm passowrd empty';
+      e['state'] = true;
     }
 
     if (password !== confirmPassword) {
-      setError({
-        ...error,
-        confirmPassword: 'Passowrd not match',
-      });
-
-      return;
+      e['confirmPassword'] = 'Passowrd not match';
+      e['state'] = true;
     }
 
-    fn.signup(state, () => router.push('/'));
+    if (e.state) {
+      setError(e);
+
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const allSet = handleError();
+
+    if (allSet) fn.signup(state);
   };
 
   return (
@@ -88,6 +101,17 @@ export default function Login({ router }) {
         </Form>
       ) : (
         <Form submit={handleSubmit}>
+          {ctx.error && (
+            <div
+              style={{
+                marginBottom: '2rem',
+                color: 'red',
+              }}
+            >
+              {`*${ctx.error}`}
+            </div>
+          )}
+
           <GiBowTieRibbon className="ribbon-icon" />
 
           <FormTitle>Sign up</FormTitle>
@@ -105,6 +129,7 @@ export default function Login({ router }) {
               placeholder="Jhon wick"
               name="fullName"
               value={state.fullName}
+              error={error.fullName}
             />
           </FormGroup>
 
@@ -115,6 +140,7 @@ export default function Login({ router }) {
               label="Email"
               placeholder="example@mail.com"
               name="email"
+              error={error.email}
               value={state.email}
             />
           </FormGroup>
@@ -128,6 +154,7 @@ export default function Login({ router }) {
               name="password"
               type="password"
               value={state.password}
+              error={error.password}
             />
           </FormGroup>
 
@@ -140,6 +167,7 @@ export default function Login({ router }) {
               name="confirmPassword"
               type="password"
               value={state.confirmPassword}
+              error={error.confirmPassword}
             />
           </FormGroup>
 

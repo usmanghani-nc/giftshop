@@ -62,7 +62,7 @@ router.post('/gift', upload.single('img'), async (req, res, next) => {
       title,
       description,
       price,
-      img: req.file.path,
+      img: `${process.env.SERVER_URL}${req.file.path}`,
     });
 
     await instanse.save();

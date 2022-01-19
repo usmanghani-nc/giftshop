@@ -239,7 +239,7 @@ export default function CMS({}) {
               return (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <Image
-                    src={url + props.row.original.img}
+                    src={props.row.original.img}
                     alt={props.row.original.img}
                     style={{
                       width: '4rem',

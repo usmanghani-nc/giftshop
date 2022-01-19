@@ -7,6 +7,11 @@ import { Wrapper, FormTitle, LinkStyle, Text } from './styles';
 import { useAuthContext } from 'context/AuthContext';
 
 export default function Login({ router }) {
+  const errorInit = {
+    email: '',
+    password: '',
+  };
+
   const { fn, state: ctx } = useAuthContext();
 
   const [state, setState] = useState({
@@ -14,10 +19,7 @@ export default function Login({ router }) {
     password: '',
   });
 
-  const [error, setError] = useState({
-    email: '',
-    password: '',
-  });
+  const [error, setError] = useState(errorInit);
 
   const handleChange = (e) => {
     setState({
@@ -26,30 +28,42 @@ export default function Login({ router }) {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
+  const handleError = () => {
     const { email, password } = state;
 
+    const e = {
+      email: '',
+      password: '',
+      state: false,
+    };
+
+    setError(e);
+
     if (!email) {
-      setError({
-        ...error,
-        email: 'Email Empty',
-      });
-
-      return;
+      e['email'] = 'Email empty';
+      e['state'] = true;
     }
 
-    if (!password) {
-      setError({
-        ...error,
-        password: 'Error',
-      });
-
-      return;
+    if (!password.length) {
+      e['password'] = 'Password empty';
+      e['state'] = true;
     }
 
-    fn.login(state);
+    if (e.state) {
+      setError(e);
+
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const allSet = handleError();
+
+    if (allSet) fn.login(state);
   };
 
   return (
@@ -93,6 +107,7 @@ export default function Login({ router }) {
               placeholder="example@mail.com"
               name="email"
               value={state.email}
+              error={error.email}
             />
           </FormGroup>
 
@@ -105,6 +120,7 @@ export default function Login({ router }) {
               name="password"
               type="password"
               value={state.password}
+              error={error.password}
             />
           </FormGroup>
 

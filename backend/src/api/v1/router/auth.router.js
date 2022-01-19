@@ -85,6 +85,10 @@ router.post('/signup', async (req, res) => {
 
     payload['status'] = 301;
     payload['error'] = e.message;
+
+    if (e.message.includes('duplicate key error collection')) {
+      payload['error'] = 'Email already in use';
+    }
   }
 
   res.json(payload);
