@@ -27,9 +27,6 @@ import Modal from 'components/modal';
 export default function Header({ user, logoutAction }) {
   const { state, fn } = useCartContext();
 
-  const url = 'http://localhost:8080/';
-  // const url = 'https://api-gifty.herokuapp.com/';
-
   return (
     <HeaderStyles>
       <div className="header-container">
@@ -96,7 +93,7 @@ export default function Header({ user, logoutAction }) {
                           return (
                             <CartWrapper key={el?._id + Math.random()}>
                               <CartImgWRapper>
-                                <CartImg src={`${url}${el?.img}`} />
+                                <CartImg src={`${el?.img}`} />
                               </CartImgWRapper>
 
                               <div className="cart-right">

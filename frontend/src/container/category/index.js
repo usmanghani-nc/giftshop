@@ -16,9 +16,6 @@ export default function Category({ title }) {
     error: null,
   });
 
-  const url = 'http://localhost:8080/';
-  // const url = 'https://api-gifty.herokuapp.com/';
-
   const get = async () => {
     try {
       const {
@@ -58,7 +55,7 @@ export default function Category({ title }) {
               <Card
                 key={idx}
                 title={el.title}
-                img={`${url}${el.img}`}
+                img={`${el.img}`}
                 description={el.description}
                 price={`$${numberWithCommas(el.price)}`}
                 action={() => fn.addToCart({ cart: el })}
