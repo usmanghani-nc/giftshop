@@ -98,6 +98,10 @@ const GlobalStyle = createGlobalStyle`
         .container-fluid {
           width: 100%;
         }
+
+        .img-rounded {
+          border-radius: 100%;
+        }
         
         @media (max-width:${({ theme }) => theme.responsive.lg} ) {
               font-size: ${({ theme }) => theme.sizes.lg};

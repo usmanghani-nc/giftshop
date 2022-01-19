@@ -238,16 +238,17 @@ export default function CMS({}) {
             Cell: (props) => {
               return (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Image
-                    src={props.row.original.img}
-                    alt={props.row.original.img}
+                  <div
                     style={{
-                      width: '4rem',
-                      height: '4rem',
+                      width: '5rem',
+                      height: '5rem',
                       marginRight: '2rem',
-                      borderRadius: '50%',
+                      borderRadius: '100%',
                     }}
-                  />
+                  >
+                    <Image src={props.row.original.img} />
+                  </div>
+
                   <span>{props.cell.value}</span>
                 </div>
               );
