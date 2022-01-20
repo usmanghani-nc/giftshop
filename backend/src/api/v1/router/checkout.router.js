@@ -52,8 +52,8 @@ router.post('/checkout', async (req, res) => {
           quantity: 1,
         };
       }),
-      success_url: 'https://giftshop-mu.vercel.app/?success=Payment+Success',
-      cancel_url: 'https://giftshop-mu.vercel.app/?cancel=Payment+Cancel',
+      success_url: 'https://giftshop-mu.vercel.app/success',
+      cancel_url: 'https://giftshop-mu.vercel.app/',
     });
 
     payload['payload'] = {

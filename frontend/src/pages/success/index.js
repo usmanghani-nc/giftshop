@@ -1,0 +1,32 @@
+import Button from 'components/button';
+import Page from 'layout/page';
+import Section from 'components/section';
+
+import styled from 'styled-components';
+
+const Div = styled.div`
+  width: 50%;
+  background-color: ${({ theme }) => theme.bg};
+  border-radius: ${({ theme }) => theme.radius};
+  padding: 6rem 5rem;
+  box-shadow: ${({ theme }) => theme.shadow};
+  margin: auto;
+`;
+
+export default function index() {
+  return (
+    <Page>
+      <Section fullPage>
+        <Div>
+          <h3 style={{ textAlign: 'center', marginBottom: '2rem' }}>
+            Thank you for purchasing
+          </h3>
+
+          <Button block href="/">
+            Continue to shopping
+          </Button>
+        </Div>
+      </Section>
+    </Page>
+  );
+}

@@ -67,7 +67,7 @@ export default function Context({ children }) {
       const { data } = await API.get('/');
       dispatch({ type: 'CURRENT_USER', payload: data });
 
-      // data.data && router.push('/');
+      state.token && router.push('/');
     } catch (e) {
       dispatch({ type: 'ERROR', payload: e.messag });
       console.error(e.message);
