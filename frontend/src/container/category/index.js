@@ -7,7 +7,7 @@ import { numberWithCommas } from 'utils/number-with-coma';
 import { Title, Wrapper, LoadingBox } from './styles';
 import { useCartContext } from 'context/AddToCartContext';
 
-export default function Category({ title }) {
+export default function Category({ title, type }) {
   const { fn } = useCartContext();
 
   const [state, setState] = useState({
@@ -20,7 +20,7 @@ export default function Category({ title }) {
     try {
       const {
         data: { payload },
-      } = await API.get(`/gift`);
+      } = await API.get(type ? `/gift/${type}` : '/gift');
       setState({
         ...state,
         data: payload,

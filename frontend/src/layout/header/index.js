@@ -43,23 +43,28 @@ export default function Header({ user, logoutAction }) {
           <Nav>
             <Ul>
               <Item>
-                <Link href="/login" m={'0 3rem 0 0'}>
+                <Link href="/" m={'0 3rem 0 0'}>
                   Home
                 </Link>
               </Item>
               <Item>
-                <Link href="/login" m={'0 3rem 0 0'}>
-                  Eid Gifts
+                <Link href="/anniversary" m={'0 3rem 0 0'}>
+                  Anniversary
                 </Link>
               </Item>
               <Item>
-                <Link href="/login" m={'0 3rem 0 0'}>
-                  Birthdays Gifts
+                <Link href="/birthday" m={'0 3rem 0 0'}>
+                  Birthdays
                 </Link>
               </Item>
               <Item>
-                <Link href="/login" m={'0'}>
-                  Wedding Gifts
+                <Link href="/wedding" m={'0 3rem 0 0'}>
+                  Wedding
+                </Link>
+              </Item>
+              <Item>
+                <Link href="/eid" m={'0'}>
+                  Eid
                 </Link>
               </Item>
             </Ul>

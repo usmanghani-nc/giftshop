@@ -7,6 +7,7 @@ import Table from 'components/table';
 import dynamic from 'next/dynamic';
 import API from 'endpoint';
 import Image from 'components/image';
+import AdminPage from 'layout/admin';
 
 const Select = dynamic(() => import('components/select'), { ssr: false });
 
@@ -167,146 +168,148 @@ export default function CMS({}) {
   };
 
   return (
-    <Section fullPage>
-      <h1 style={{ marginBottom: '22px' }}>CMS</h1>
-      <Form submit={handleSubmit} block>
-        <FormGroup>
-          <Input
-            name="title"
-            label="Title"
-            placeholder="Title"
-            border
-            action={handleInput}
-            value={state.title}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Input
-            name="description"
-            label="Description"
-            placeholder="Description"
-            border
-            action={handleInput}
-            value={state.description}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Input
-            name="price"
-            label="Price"
-            placeholder="Price"
-            type="number"
-            border
-            action={handleInput}
-            value={state.price}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Input
-            action={(e) => setState({ ...state, img: e.target.files[0] })}
-            placeholder="Product Image"
-            type="file"
-            border
-            name="img"
-          />
-          {state.img && state.img.name}
-        </FormGroup>
+    <AdminPage>
+      <Section fullPage>
+        <h1 style={{ marginBottom: '22px' }}>CMS</h1>
+        <Form submit={handleSubmit} block>
+          <FormGroup>
+            <Input
+              name="title"
+              label="Title"
+              placeholder="Title"
+              border
+              action={handleInput}
+              value={state.title}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="description"
+              label="Description"
+              placeholder="Description"
+              border
+              action={handleInput}
+              value={state.description}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              name="price"
+              label="Price"
+              placeholder="Price"
+              type="number"
+              border
+              action={handleInput}
+              value={state.price}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              action={(e) => setState({ ...state, img: e.target.files[0] })}
+              placeholder="Product Image"
+              type="file"
+              border
+              name="img"
+            />
+            {state.img && state.img.name}
+          </FormGroup>
 
-        <FormGroup>
-          Category
-          <Select
-            action={(category) => setState({ ...state, category })}
-            value={state.category}
-            options={[
-              { value: 'anniversary', label: 'Anniversary' },
-              { value: 'birhtday', label: 'Birhtday' },
-              { value: 'fathers', label: 'Fathers day' },
-              { value: 'mothers', label: 'Mothers day' },
-            ]}
-          />
-        </FormGroup>
+          <FormGroup>
+            Category
+            <Select
+              action={(category) => setState({ ...state, category })}
+              value={state.category}
+              options={[
+                { value: 'anniversary', label: 'Anniversary' },
+                { value: 'birthday', label: 'Birthday' },
+                { value: 'eid', label: 'Eid' },
+                { value: 'wedding', label: 'Wedding' },
+              ]}
+            />
+          </FormGroup>
 
-        <Button disable={state.lading} loading={state.lading} block>
-          Adde Gift
-        </Button>
-      </Form>
-      <Table
-        columns={[
-          {
-            Header: 'Title',
-            accessor: 'title',
-            Cell: (props) => {
-              return (
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '5rem',
-                      height: '5rem',
-                      marginRight: '2rem',
-                      borderRadius: '100%',
-                    }}
-                  >
-                    <Image src={props.row.original.img} />
+          <Button disable={state.lading} loading={state.lading} block>
+            Adde Gift
+          </Button>
+        </Form>
+        <Table
+          columns={[
+            {
+              Header: 'Title',
+              accessor: 'title',
+              Cell: (props) => {
+                return (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <div
+                      style={{
+                        width: '5rem',
+                        height: '5rem',
+                        marginRight: '2rem',
+                        borderRadius: '100%',
+                      }}
+                    >
+                      <Image src={props.row.original.img} />
+                    </div>
+
+                    <span>{props.cell.value}</span>
                   </div>
-
-                  <span>{props.cell.value}</span>
-                </div>
-              );
+                );
+              },
             },
-          },
-          { Header: 'Description', accessor: 'description' },
-          { Header: 'Price', accessor: 'price' },
-          { Header: 'Category', accessor: 'category' },
-          {
-            Header: 'Action',
-            accessor: '_id',
-            Cell: (props) => {
-              return (
-                <div style={{ display: 'flex' }}>
-                  <div
-                    style={{
-                      cursor: 'pointer',
-                      marginRight: '10px',
-                      color: 'red',
-                    }}
-                    onClick={() => handleDelet(props.cell.value)}
-                  >
-                    Delete
-                  </div>
-                  /
-                  {edit === props.cell.value ? (
+            { Header: 'Description', accessor: 'description' },
+            { Header: 'Price', accessor: 'price' },
+            { Header: 'Category', accessor: 'category' },
+            {
+              Header: 'Action',
+              accessor: '_id',
+              Cell: (props) => {
+                return (
+                  <div style={{ display: 'flex' }}>
                     <div
                       style={{
                         cursor: 'pointer',
-                        marginLeft: '10px',
-                        color: 'green',
+                        marginRight: '10px',
+                        color: 'red',
                       }}
-                      onClick={() => handleEdit(props.cell.value)}
+                      onClick={() => handleDelet(props.cell.value)}
                     >
-                      Save
+                      Delete
                     </div>
-                  ) : (
-                    <div
-                      style={{
-                        cursor: 'pointer',
-                        marginLeft: '10px',
-                        color: 'green',
-                      }}
-                      onClick={() => setEditValue(props.cell.value)}
-                    >
-                      Edit
-                    </div>
-                  )}
-                </div>
-              );
+                    /
+                    {edit === props.cell.value ? (
+                      <div
+                        style={{
+                          cursor: 'pointer',
+                          marginLeft: '10px',
+                          color: 'green',
+                        }}
+                        onClick={() => handleEdit(props.cell.value)}
+                      >
+                        Save
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          cursor: 'pointer',
+                          marginLeft: '10px',
+                          color: 'green',
+                        }}
+                        onClick={() => setEditValue(props.cell.value)}
+                      >
+                        Edit
+                      </div>
+                    )}
+                  </div>
+                );
+              },
             },
-          },
-        ]}
-        body={data.items?.map((el) => ({
-          ...el,
-          category: el.category.value,
-        }))}
-      />
-    </Section>
+          ]}
+          body={data.items?.map((el) => ({
+            ...el,
+            category: el.category.value,
+          }))}
+        />
+      </Section>
+    </AdminPage>
   );
 }

@@ -6,7 +6,7 @@ export default function Home({}) {
   return (
     <Page title="Home">
       <Hero />
-      <Category title="Popular Gift Collection" />
+      <Category title="Latest Gift Collection" />
     </Page>
   );
 }

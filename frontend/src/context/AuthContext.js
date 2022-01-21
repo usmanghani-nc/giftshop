@@ -76,6 +76,8 @@ export default function Context({ children }) {
 
   const login = async (userData) => {
     try {
+      dispatch({ type: 'ERROR', payload: '' });
+
       setLoading(true);
 
       const { data } = await API.post('/login', userData);

@@ -27,6 +27,26 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter });
 
+router.get('/gift/:type', async (req, res) => {
+  const payload = {
+    status: 200,
+    payload: [],
+    error: false,
+  };
+
+  try {
+    const gifts = await GiftModel.find({ 'category.value': req.params.type });
+
+    payload['payload'] = gifts;
+
+    res.json(payload);
+  } catch (e) {
+    payload['status'] = 301;
+    payload['error'] = e.message;
+    res.json(payload);
+  }
+});
+
 router.get('/gift', async (req, res) => {
   const payload = {
     status: 200,
