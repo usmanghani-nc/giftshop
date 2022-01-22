@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react';
 import { useRouter } from 'next/router';
+import { useQuery, useQueryClient } from 'react-query';
 
 const AuthContext = createContext();
 
@@ -56,23 +57,24 @@ const reducer = (state, action) => {
 
 export default function Context({ children }) {
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const [state, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(false);
 
-  const getUser = async () => {
-    try {
-      dispatch({ type: 'LOADING' });
+  const getUser = () => API.get('/');
 
-      const { data } = await API.get('/');
-      dispatch({ type: 'CURRENT_USER', payload: data });
-
-      state.token && router.push('/');
-    } catch (e) {
-      dispatch({ type: 'ERROR', payload: e.messag });
-      console.error(e.message);
+  const { data, isLoading, isError, error, refetch } = useQuery(
+    'user',
+    getUser,
+    {
+      staleTime: 30000,
     }
-  };
+  );
+
+  if (isError) {
+    dispatch({ type: 'ERROR', payload: error.messag });
+  }
 
   const login = async (userData) => {
     try {
@@ -88,6 +90,10 @@ export default function Context({ children }) {
         dispatch({ type: 'TOKEN', payload: data.payload.token });
 
         setLoading(false);
+
+        await refetch();
+
+        data.payload.token && router.push('/');
       } else {
         dispatch({ type: 'ERROR', payload: data.error });
         setLoading(false);
@@ -112,6 +118,10 @@ export default function Context({ children }) {
 
         dispatch({ type: 'TOKEN', payload: data.payload.token });
         setLoading(false);
+
+        await refetch();
+
+        data.payload.token && router.push('/');
       } else {
         dispatch({ type: 'ERROR', payload: data.error });
         setLoading(false);
@@ -124,13 +134,9 @@ export default function Context({ children }) {
 
   const logout = () => {
     localStorage.removeItem('token');
-
-    dispatch({ type: 'CURRENT_USER', payload: null });
+    queryClient.setQueryData('user', () => undefined);
+    queryClient.removeQueries('user');
   };
-
-  useEffect(() => {
-    getUser();
-  }, [state.token]);
 
   return (
     <AuthContext.Provider
@@ -138,6 +144,8 @@ export default function Context({ children }) {
         state: {
           ...state,
           formLoading: loading,
+          user: data?.data,
+          isLoading,
         },
         fn: { signup, login, logout, setLoading },
       }}

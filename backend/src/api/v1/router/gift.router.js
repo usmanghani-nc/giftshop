@@ -35,8 +35,9 @@ router.get('/gift/:type', async (req, res) => {
   };
 
   try {
-    const gifts = await GiftModel.find({ 'category.value': req.params.type });
-
+    const gifts = await GiftModel.find({ 'category.value': req.params.type }).sort({
+      createdAt: -1,
+    });
     payload['payload'] = gifts;
 
     res.json(payload);
@@ -55,7 +56,7 @@ router.get('/gift', async (req, res) => {
   };
 
   try {
-    const gifts = await GiftModel.find({});
+    const gifts = await GiftModel.find({}).sort({ createdAt: -1 });
 
     payload['payload'] = gifts;
 

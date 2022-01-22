@@ -10,8 +10,9 @@ import {
 import Image from 'components/image';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
+import { memo } from 'react';
 
-export default function CardCom({ title, description, img, price, action }) {
+function CardCom({ title, description, img, price, action }) {
   return (
     <CardStyle>
       {img && (
@@ -32,6 +33,8 @@ export default function CardCom({ title, description, img, price, action }) {
     </CardStyle>
   );
 }
+
+export default memo(CardCom);
 
 CardCom.propTypes = {
   title: PropTypes.string,

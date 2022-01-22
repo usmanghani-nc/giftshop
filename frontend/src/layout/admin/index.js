@@ -22,7 +22,7 @@ export default function Page({ children }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (!state.loading) {
+    if (!state.isLoading) {
       if (state.user.data) {
         const roles = state.user.data?.roles;
 
@@ -31,11 +31,11 @@ export default function Page({ children }) {
         router.push('/');
       }
     }
-  }, [state.loading]);
+  }, [state.isLoading]);
 
   return (
     <PageStyles>
-      {state.loading ? (
+      {state.isLoading ? (
         <FullScreenLoading />
       ) : (
         <>

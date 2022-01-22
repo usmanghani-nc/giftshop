@@ -10,9 +10,14 @@ const SectionStyled = styled.section`
   justify-content: center;
 `;
 
-export default function Section({ fluid, children, fullPage, noPadding }) {
+export default function Section({ fluid, children, fullPage, noPadding, id }) {
   return (
-    <SectionStyled fluid={fluid} fullPage={fullPage} noPadding={noPadding}>
+    <SectionStyled
+      id={id}
+      fluid={fluid}
+      fullPage={fullPage}
+      noPadding={noPadding}
+    >
       <div className={fluid ? 'container-fluid' : 'container'}>{children}</div>
     </SectionStyled>
   );

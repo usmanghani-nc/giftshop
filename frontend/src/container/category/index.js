@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import Section from 'components/section';
 import Card from 'components/card';
 import API from 'endpoint';
@@ -6,64 +6,56 @@ import { Loader } from 'components/loading';
 import { numberWithCommas } from 'utils/number-with-coma';
 import { Title, Wrapper, LoadingBox } from './styles';
 import { useCartContext } from 'context/AddToCartContext';
+import { useQuery } from 'react-query';
 
-export default function Category({ title, type }) {
-  const { fn } = useCartContext();
+function Category({ title, type }) {
+  const get = () => API.get(type ? `/gift/${type}` : '/gift');
 
-  const [state, setState] = useState({
-    data: [],
-    lading: true,
-    error: null,
-  });
+  const { data, isLoading, isError, error } = useQuery(
+    type ? type : 'category',
+    get
+  );
 
-  const get = async () => {
-    try {
-      const {
-        data: { payload },
-      } = await API.get(type ? `/gift/${type}` : '/gift');
-      setState({
-        ...state,
-        data: payload,
-        lading: false,
-      });
-    } catch (e) {
-      console.error(e.message);
-      setState({
-        data: [],
-        lading: false,
-        error: e.message,
-      });
-    }
-  };
-
-  useEffect(() => {
-    get();
-  }, []);
+  if (isError) {
+    console.log(error.message);
+  }
 
   return (
-    <Section>
+    <Section id="category">
       <Title>{title}</Title>
 
-      {state.lading ? (
+      {isLoading ? (
         <LoadingBox>
           <Loader />
         </LoadingBox>
       ) : (
-        <Wrapper>
-          {state.data.map((el, idx) => {
-            return (
-              <Card
-                key={idx}
-                title={el.title}
-                img={`${el.img}`}
-                description={el.description}
-                price={`$${numberWithCommas(el.price)}`}
-                action={() => fn.addToCart({ cart: el })}
-              ></Card>
-            );
-          })}
-        </Wrapper>
+        <WrapperComponent data={data.data.payload} />
       )}
     </Section>
   );
 }
+
+const WrapperComponent = memo(({ data }) => {
+  const { fn } = useCartContext();
+
+  return (
+    <Wrapper>
+      {data.map((el, idx) => {
+        return (
+          <Card
+            key={idx}
+            title={el.title}
+            img={`${el.img}`}
+            description={el.description}
+            price={`$${numberWithCommas(el.price)}`}
+            action={useCallback(() => {
+              fn.addToCart({ cart: el });
+            }, [])}
+          ></Card>
+        );
+      })}
+    </Wrapper>
+  );
+});
+
+export default Category;

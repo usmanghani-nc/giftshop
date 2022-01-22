@@ -14,14 +14,14 @@ export default function Hero({}) {
 
         <HeroTitle>The Best Gift Shop</HeroTitle>
         <SubTitle>
-          Createing Happiness For Your Loved Ones
+          Creating Happiness For Your Loved Ones
           <BsGiftFill className="gift-icon" />
         </SubTitle>
         <HeroDescription>
           Browse through some of the largest collection of gifts to brighten
           your day
         </HeroDescription>
-        <Button className="hero-cta" shadow>
+        <Button className="hero-cta" href="#category" shadow>
           CHOOSE A GIFT
         </Button>
       </HeroStyles>

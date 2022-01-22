@@ -54,7 +54,7 @@ export default function Page({ children, noHeader, nofooter, title }) {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      {state.loading ? (
+      {state.isLoading ? (
         <FullScreenLoading />
       ) : (
         <>
