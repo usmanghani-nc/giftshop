@@ -69,7 +69,7 @@ export default function Login({ router }) {
   return (
     <Wrapper>
       {ctx.user?.data?._id ? (
-        <Form>
+        <Form submit={() => ''}>
           <h3 style={{ textAlign: 'center', marginBottom: '2rem' }}>
             You are already logged in {ctx.user.data.fullName}
           </h3>

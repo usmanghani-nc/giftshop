@@ -17,7 +17,7 @@ import {
   CartPrice,
   CartHead,
 } from './styles';
-import { FiUser, FiSearch, FiMenu, FiShoppingCart } from 'react-icons/fi';
+import { FiUser, FiMenu, FiShoppingCart } from 'react-icons/fi';
 import Badge from 'components/badge';
 import Button from 'components/button';
 import Link from 'components/link';
@@ -71,9 +71,6 @@ export default function Header({ user, logoutAction }) {
           </Nav>
 
           <UserDiv>
-            <UserICon>
-              <FiSearch className="icons" />
-            </UserICon>
             {user?.data?._id ? (
               <>
                 <UserICon className="cart">
