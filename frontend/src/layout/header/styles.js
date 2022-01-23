@@ -23,7 +23,11 @@ export const GridBox = styled.div`
   }
 `;
 
-export const Logo = styled.div``;
+export const Logo = styled.div`
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    padding: 2rem 2rem 1rem;
+  }
+`;
 
 export const LogoIMG = styled.img`
   width: 11.5rem;
@@ -43,17 +47,22 @@ export const Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    flex-direction: column;
+  }
 `;
 
-export const Item = styled.li``;
+export const Item = styled.li`
+  @media (max-width: ${({ theme }) => theme.responsive.md}) {
+    padding: 2rem 2rem 1rem;
+    font-size: 1.8rem;
+  }
+`;
 
 export const UserDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  @media (max-width: ${({ theme }) => theme.responsive.md}) {
-    display: none;
-  }
 `;
 
 export const Manu = styled.div`
@@ -63,7 +72,7 @@ export const Manu = styled.div`
   display: none;
 
   & .menu {
-    font-size: 35px;
+    font-size: 3rem;
     color: ${({ theme }) => theme.black};
   }
 
@@ -76,7 +85,7 @@ export const Cart = styled.div`
   position: absolute;
   z-index: 999;
   top: 20px;
-  left: -137px;
+  right: -20px;
   min-width: 300px;
   padding-top: 1.5rem;
   visibility: hidden;
@@ -192,4 +201,19 @@ export const CartHead = styled.div`
     color: ${({ theme }) => theme.primary};
     font-size: 1.4rem;
   }
+`;
+
+export const SideBar = styled.aside`
+  background: white;
+  position: fixed;
+  height: 100vh;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  box-shadow: ${({ theme }) => theme.shadow};
+  border-right: 1px solid ${({ theme }) => theme.border};
+  visibility: ${({ active }) => (active ? 'visible' : 'hidden')};
+  width: ${({ active }) => (active ? '300px' : '0')};
+  transition: all ease 0.25s;
+  overflow-x: hidden;
 `;

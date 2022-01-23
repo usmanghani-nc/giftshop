@@ -66,10 +66,7 @@ export default function Context({ children }) {
 
   const { data, isLoading, isError, error, refetch } = useQuery(
     'user',
-    getUser,
-    {
-      staleTime: 30000,
-    }
+    getUser
   );
 
   if (isError) {
