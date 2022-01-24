@@ -8,10 +8,23 @@ import dynamic from 'next/dynamic';
 import API from 'endpoint';
 import Image from 'components/image';
 import AdminPage from 'layout/admin';
+import { useQuery } from 'react-query';
 
 const Select = dynamic(() => import('components/select'), { ssr: false });
 
 export default function CMS({}) {
+  const getAllOrders = () => API.get(`/orders`);
+
+  const { data: orderData, isLoading } = useQuery(
+    'getAllOrders',
+    getAllOrders,
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  console.log(orderData);
+
   const [state, setState] = useState({
     category: null,
     title: '',
@@ -309,6 +322,16 @@ export default function CMS({}) {
             category: el.category.value,
           }))}
         />
+        {!isLoading && (
+          <Table
+            columns={[
+              { Header: 'Order ID', accessor: '_id' },
+              { Header: 'Order', accessor: 'order' },
+              { Header: 'User', accessor: 'user' },
+            ]}
+            body={orderData.data.payload}
+          />
+        )}
       </Section>
     </AdminPage>
   );

@@ -1,27 +1,14 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
-const User = require('../model/user-model');
+const checkAuth = require('../middleware/checkAuth');
 
-router.get('/', async (req, res) => {
-  const { authorization } = req.headers;
-
+router.get('/', checkAuth, async (req, res) => {
   const payload = {
     status: 200,
     data: null,
     error: false,
   };
 
-  if (authorization) {
-    const token = authorization.replace('Bearer ', '');
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRETE);
-
-    const { id } = decoded;
-
-    const user = await User.findById(id);
-
-    payload['data'] = user;
-  }
+  if (req.user) payload['data'] = req.user;
 
   res.json(payload);
 });

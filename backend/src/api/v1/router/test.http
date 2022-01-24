@@ -45,6 +45,14 @@ Content-Type: application/json
 
 
 
+#### Get
+GET  {{baseUrl}}/orders
+
+
+
+
+
+
 
 
 
