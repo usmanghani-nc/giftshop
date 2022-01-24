@@ -14,8 +14,8 @@ const Div = styled.div`
   margin: auto;
 `;
 
-export default function index({ session_id }) {
-  const get = () => API.get(`/success?session_id=${session_id}`);
+export default function Success({ sessionId }) {
+  const get = () => API.get(`/success?session_id=${sessionId}`);
 
   useQuery('success', get, {
     refetchOnWindowFocus: false,
@@ -40,6 +40,6 @@ export default function index({ session_id }) {
 
 export async function getServerSideProps(context) {
   return {
-    props: { session_id: context.query.session_id },
+    props: { sessionId: context.query.session_id },
   };
 }

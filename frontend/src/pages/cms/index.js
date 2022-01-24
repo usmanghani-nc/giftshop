@@ -13,7 +13,7 @@ import { useQuery } from 'react-query';
 const Select = dynamic(() => import('components/select'), { ssr: false });
 
 export default function CMS({}) {
-  const getAllOrders = () => API.get(`/orders`);
+  const getAllOrders = () => API.get('/orders');
 
   const { data: orderData, isLoading } = useQuery(
     'getAllOrders',
@@ -22,8 +22,6 @@ export default function CMS({}) {
       refetchOnWindowFocus: false,
     }
   );
-
-  console.log(orderData);
 
   const [state, setState] = useState({
     category: null,
