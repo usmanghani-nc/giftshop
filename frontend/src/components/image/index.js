@@ -11,7 +11,8 @@ export default function ImageCom({ src, alt, className, ...otherProps }) {
         className={`img ${className}`}
         layout="fill"
         objectFit="contain"
-        quality={100}
+        quality={90}
+        priority
         {...otherProps}
       />
     </ImageDiv>
